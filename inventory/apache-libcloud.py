@@ -37,7 +37,7 @@ import re
 from time import time
 
 from jeti.module_utils.six import iteritems, string_types
-from jeti.module_utils.six.moves import configparser as ConfigParser
+import configparser as ConfigParser
 from libcloud.compute.types import Provider
 from libcloud.compute.providers import get_driver
 import libcloud.security as sec

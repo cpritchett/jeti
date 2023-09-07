@@ -28,8 +28,7 @@ import distutils.spawn
 import sys
 import json
 
-from jeti.module_utils.six.moves import configparser
-
+import configparser
 # Set up defaults
 resource = 'local:'
 group = 'lxd'

@@ -29,8 +29,7 @@ Configuration is read from `nagios_ndo.ini`.
 import os
 import argparse
 import sys
-from jeti.module_utils.six.moves import configparser
-import json
+import configparserimport json
 
 try:
     from sqlalchemy import text

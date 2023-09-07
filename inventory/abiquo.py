@@ -47,7 +47,7 @@ import time
 
 import json
 
-from jeti.module_utils.six.moves import configparser as ConfigParser
+import configparser as ConfigParser
 from jeti.module_utils.urls import open_url
 
 

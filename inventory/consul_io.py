@@ -136,8 +136,7 @@ import re
 import argparse
 import sys
 
-from jeti.module_utils.six.moves import configparser
-
+import configparser
 
 def get_log_filename():
     tty_filename = '/dev/tty'

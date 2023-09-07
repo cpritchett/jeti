@@ -77,7 +77,7 @@ import traceback
 import json
 
 from jeti.module_utils.six import iteritems
-from jeti.module_utils.six.moves import configparser as ConfigParser
+import configparser as ConfigParser
 from jeti.module_utils.six.moves.urllib.parse import urlencode
 
 from jeti.module_utils.urls import open_url

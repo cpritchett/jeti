@@ -26,8 +26,7 @@ from ansible.errors import AnsibleOptionsError, AnsibleError
 from jeti.module_utils._text import to_text, to_bytes, to_native
 from jeti.module_utils.common._collections_compat import Sequence
 from jeti.module_utils.six import PY3, string_types
-from jeti.module_utils.six.moves import configparser
-from jeti.module_utils.parsing.convert_bool import boolean
+import configparserfrom jeti.module_utils.parsing.convert_bool import boolean
 from ansible.parsing.quoting import unquote
 from ansible.parsing.yaml.objects import AnsibleVaultEncryptedUnicode
 from ansible.utils import py3compat

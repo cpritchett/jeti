@@ -56,8 +56,7 @@ import argparse
 import httplib2 as http
 from time import time
 from jeti.module_utils import six
-from jeti.module_utils.six.moves import configparser
-from jeti.module_utils.six.moves.urllib.parse import urlparse
+import configparserfrom jeti.module_utils.six.moves.urllib.parse import urlparse
 
 import json
 

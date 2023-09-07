@@ -65,8 +65,7 @@ import sys
 
 from collections import defaultdict
 
-from jeti.module_utils.six.moves import configparser
-
+import configparser
 import json
 
 try:

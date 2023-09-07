@@ -27,8 +27,7 @@ maintainer: J Barnett (github @jbarnett1981)
 import argparse
 import json
 import pymssql
-from jeti.module_utils.six.moves import configparser
-
+import configparser
 
 class MDTInventory(object):
 

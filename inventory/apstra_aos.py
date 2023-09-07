@@ -66,8 +66,7 @@ try:
 except ImportError:
     HAS_AOS_PYEZ = False
 
-from jeti.module_utils.six.moves import configparser
-
+import configparser
 
 """
 ##

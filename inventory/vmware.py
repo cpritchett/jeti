@@ -40,8 +40,7 @@ import time
 
 from jeti.module_utils.common._collections_compat import MutableMapping
 from jeti.module_utils.six import integer_types, text_type, string_types
-from jeti.module_utils.six.moves import configparser
-
+import configparser
 # Disable logging message trigged by pSphere/suds.
 try:
     from logging import NullHandler

@@ -265,8 +265,7 @@ import json
 
 from jeti.module_utils.basic import AnsibleModule
 from jeti.module_utils._text import to_native
-from jeti.module_utils.six.moves import configparser
-
+import configparser
 
 SUBMAN_CMD = None
 

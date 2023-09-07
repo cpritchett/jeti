@@ -50,7 +50,7 @@ import subprocess
 import json
 
 from jeti.module_utils.six import iteritems
-from jeti.module_utils.six.moves import configparser as ConfigParser
+import configparser as ConfigParser
 
 
 base_dir = os.path.dirname(os.path.realpath(__file__))

@@ -389,8 +389,7 @@ state:
 import os
 
 from jeti.module_utils.basic import AnsibleModule
-from jeti.module_utils.six.moves import configparser
-from jeti.module_utils._text import to_native
+import configparserfrom jeti.module_utils._text import to_native
 
 
 class YumRepo(object):

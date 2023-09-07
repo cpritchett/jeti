@@ -142,8 +142,7 @@ else:
 
 from jeti.module_utils.basic import AnsibleModule, missing_required_lib
 from jeti.module_utils.six import binary_type, text_type
-from jeti.module_utils.six.moves import configparser
-from jeti.module_utils._text import to_native
+import configparserfrom jeti.module_utils._text import to_native
 
 
 # =========================================

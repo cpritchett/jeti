@@ -38,8 +38,7 @@ from __future__ import print_function
 import os
 import sys
 import argparse
-from jeti.module_utils.six.moves import configparser
-
+import configparser
 try:
     from zabbix_api import ZabbixAPI
 except Exception:

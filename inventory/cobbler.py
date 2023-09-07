@@ -67,7 +67,7 @@ import xmlrpclib
 import json
 
 from jeti.module_utils.six import iteritems
-from jeti.module_utils.six.moves import configparser as ConfigParser
+import configparser as ConfigParser
 
 # NOTE -- this file assumes Ansible is being accessed FROM the cobbler
 # server, so it does not attempt to login with a username and password.

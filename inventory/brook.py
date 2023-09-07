@@ -79,8 +79,7 @@ Version: 0.2
 import sys
 import os
 
-from jeti.module_utils.six.moves.configparser import SafeConfigParser as ConfigParser
-
+import SafeConfigParser as ConfigParser
 import json
 
 try:

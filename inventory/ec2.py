@@ -170,8 +170,7 @@ from boto import sts
 
 from jeti.module_utils import six
 from jeti.module_utils import ec2 as ec2_utils
-from jeti.module_utils.six.moves import configparser
-
+import configparser
 HAS_BOTO3 = False
 try:
     import boto3  # noqa

@@ -42,8 +42,7 @@ import copy
 import os
 import requests
 from jeti.module_utils import six
-from jeti.module_utils.six.moves import configparser
-import sys
+import configparserimport sys
 import time
 import traceback
 

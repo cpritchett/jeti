@@ -35,7 +35,7 @@ import sys
 import StringIO
 
 from jeti.module_utils.urls import open_url
-from jeti.module_utils.six.moves import configparser as ConfigParser
+import configparser as ConfigParser
 
 configparser = None
 

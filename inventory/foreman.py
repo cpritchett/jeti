@@ -41,7 +41,7 @@ if LooseVersion(requests.__version__) < LooseVersion('1.1.0'):
 from requests.auth import HTTPBasicAuth
 
 from jeti.module_utils._text import to_text
-from jeti.module_utils.six.moves import configparser as ConfigParser
+import configparser as ConfigParser
 
 
 def json_format_dict(data, pretty=False):

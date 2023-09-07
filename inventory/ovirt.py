@@ -69,7 +69,7 @@ import sys
 import os
 import argparse
 from collections import defaultdict
-from jeti.module_utils.six.moves import configparser as ConfigParser
+import configparser as ConfigParser
 
 import json
 

@@ -36,8 +36,7 @@ import re
 import argparse
 import sys
 
-from jeti.module_utils.six.moves import configparser
-import json
+import configparserimport json
 
 try:
     from mk_livestatus import Socket

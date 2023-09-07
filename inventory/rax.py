@@ -153,7 +153,7 @@ import warnings
 import collections
 
 from jeti.module_utils.six import iteritems
-from jeti.module_utils.six.moves import configparser as ConfigParser
+import configparser as ConfigParser
 
 import json
 
