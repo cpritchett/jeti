@@ -1,3 +1,0 @@
----
-bugfixes:
-- "To fix ios_l3_interfaces resource module round trip failure(https://github.com/ansible/ansible/pull/61642)"

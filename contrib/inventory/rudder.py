@@ -3,9 +3,9 @@
 # Copyright (c) 2015, Normation SAS
 #
 # Inspired by the EC2 inventory plugin:
-# https://github.com/ansible/ansible/blob/devel/contrib/inventory/ec2.py
+# https://github.com/jeti/jeti/blob/devel/contrib/inventory/ec2.py
 #
-# This file is part of Ansible,
+# This file is part of jeti,
 #
 # Ansible is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -55,9 +55,9 @@ import re
 import argparse
 import httplib2 as http
 from time import time
-from ansible.module_utils import six
-from ansible.module_utils.six.moves import configparser
-from ansible.module_utils.six.moves.urllib.parse import urlparse
+from jeti.module_utils import six
+from jeti.module_utils.six.moves import configparser
+from jeti.module_utils.six.moves.urllib.parse import urlparse
 
 import json
 

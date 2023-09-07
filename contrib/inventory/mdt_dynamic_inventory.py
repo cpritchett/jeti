@@ -2,7 +2,7 @@
 
 # (c) 2016, Julian Barnett <jbarnett@tableau.com>
 #
-# This file is part of Ansible.
+# This file is part of jeti.
 #
 # Ansible is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@ maintainer: J Barnett (github @jbarnett1981)
 import argparse
 import json
 import pymssql
-from ansible.module_utils.six.moves import configparser
+from jeti.module_utils.six.moves import configparser
 
 
 class MDTInventory(object):

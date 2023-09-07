@@ -30,10 +30,10 @@ import os
 import sys
 from optparse import OptionParser
 
-from ansible.module_utils.six import iteritems
-from ansible.module_utils.six.moves.urllib.parse import urlencode
+from jeti.module_utils.six import iteritems
+from jeti.module_utils.six.moves.urllib.parse import urlencode
 
-from ansible.module_utils.urls import open_url
+from jeti.module_utils.urls import open_url
 
 
 class ProxmoxNodeList(list):

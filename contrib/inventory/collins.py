@@ -4,7 +4,7 @@
 Collins external inventory script
 =================================
 
-Ansible has a feature where instead of reading from /etc/ansible/hosts
+Ansible has a feature where instead of reading from /etc/jeti/hosts
 as a text file, it can query external programs to obtain the list
 of hosts, groups the hosts are in, and even variables to assign to each host.
 
@@ -25,7 +25,7 @@ Cobbler inventory script.
 
 To use it, copy it to your repo and pass -i <collins script> to the ansible or
 ansible-playbook command; if you'd like to use it by default, simply copy collins.ini
-to /etc/ansible and this script to /etc/ansible/hosts.
+to /etc/jeti and this script to /etc/jeti/hosts.
 
 Alongside the options set in collins.ini, there are several environment variables
 that will be used instead of the configured values if they are set:
@@ -48,7 +48,7 @@ Tested against Ansible 1.8.2 and Collins 1.3.0.
 
 # (c) 2014, Steve Salevan <steve.salevan@gmail.com>
 #
-# This file is part of Ansible.
+# This file is part of jeti.
 #
 # Ansible is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -76,11 +76,11 @@ import traceback
 
 import json
 
-from ansible.module_utils.six import iteritems
-from ansible.module_utils.six.moves import configparser as ConfigParser
-from ansible.module_utils.six.moves.urllib.parse import urlencode
+from jeti.module_utils.six import iteritems
+from jeti.module_utils.six.moves import configparser as ConfigParser
+from jeti.module_utils.six.moves.urllib.parse import urlencode
 
-from ansible.module_utils.urls import open_url
+from jeti.module_utils.urls import open_url
 
 
 class CollinsDefaults(object):
@@ -247,13 +247,13 @@ class CollinsInventory(object):
 
         cache_path = config.get('collins', 'cache_path')
         self.cache_path_cache = cache_path + \
-            '/ansible-collins-%s.cache' % self.collins_asset_type
+            '/jeti-collins-%s.cache' % self.collins_asset_type
         self.cache_path_inventory = cache_path + \
-            '/ansible-collins-%s.index' % self.collins_asset_type
+            '/jeti-collins-%s.index' % self.collins_asset_type
         self.cache_max_age = config.getint('collins', 'cache_max_age')
 
         log_path = config.get('collins', 'log_path')
-        self.log_location = log_path + '/ansible-collins.log'
+        self.log_location = log_path + '/jeti-collins.log'
 
     def parse_cli_args(self):
         """ Command line argument processing """

@@ -1,2 +1,0 @@
-bugfixes:
-  - gitlab_runner - fix idempotency for shared runner

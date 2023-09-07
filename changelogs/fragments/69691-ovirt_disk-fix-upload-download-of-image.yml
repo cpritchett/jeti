@@ -1,2 +1,0 @@
-bugfixes:
-  - "ovirt_disk: fix upload/download of images for ovirt 4.4"

@@ -1,3 +1,0 @@
-bugfixes:
-  - k8s - add support for python-kubernetes v12 and later - backport of
-    support in community.kubernetes

@@ -1,3 +1,0 @@
-shippable/posix/group1
-skip/python3
-disabled  # failing on multiple platforms after Jinja2 3.0.0 release

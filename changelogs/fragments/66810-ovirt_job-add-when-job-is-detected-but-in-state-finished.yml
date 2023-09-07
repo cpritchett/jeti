@@ -1,2 +1,0 @@
-bugfixes:
-  - "ovirt_job: add job when job is already existing and is in state finished"

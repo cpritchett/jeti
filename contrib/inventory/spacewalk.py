@@ -4,11 +4,11 @@
 Spacewalk external inventory script
 =================================
 
-Ansible has a feature where instead of reading from /etc/ansible/hosts
+Ansible has a feature where instead of reading from /etc/jeti/hosts
 as a text file, it can query external programs to obtain the list
 of hosts, groups the hosts are in, and even variables to assign to each host.
 
-To use this, copy this file over /etc/ansible/hosts and chmod +x the file.
+To use this, copy this file over /etc/jeti/hosts and chmod +x the file.
 This, more or less, allows you to keep one central database containing
 info about all of your managed instances.
 
@@ -49,8 +49,8 @@ from optparse import OptionParser
 import subprocess
 import json
 
-from ansible.module_utils.six import iteritems
-from ansible.module_utils.six.moves import configparser as ConfigParser
+from jeti.module_utils.six import iteritems
+from jeti.module_utils.six.moves import configparser as ConfigParser
 
 
 base_dir = os.path.dirname(os.path.realpath(__file__))

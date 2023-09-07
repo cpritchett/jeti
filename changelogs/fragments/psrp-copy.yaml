@@ -1,2 +1,0 @@
-bugfixes:
-- psrp - Use native PSRP mechanism when copying files to support custom endpoints

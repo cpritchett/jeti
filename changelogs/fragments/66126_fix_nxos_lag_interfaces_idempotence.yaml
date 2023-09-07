@@ -1,3 +1,0 @@
----
-bugfixes:
-  - Fix idempotence issue in nxos_lag_interfaces with Python 3 (https://github.com/ansible/ansible/pull/66126)

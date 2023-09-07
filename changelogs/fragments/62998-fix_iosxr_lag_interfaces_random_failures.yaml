@@ -1,3 +1,0 @@
----
-bugfixes:
-  - iosxr - Fix random idempotence issues with iosxr_lag_interfaces Resource Module (https://github.com/ansible/ansible/pull/62998).

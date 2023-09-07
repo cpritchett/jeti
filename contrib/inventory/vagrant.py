@@ -42,8 +42,8 @@ from optparse import OptionParser
 from collections import defaultdict
 import json
 
-from ansible.module_utils._text import to_text
-from ansible.module_utils.six.moves import StringIO
+from jeti.module_utils._text import to_text
+from jeti.module_utils.six.moves import StringIO
 
 
 _group = 'vagrant'  # a default group

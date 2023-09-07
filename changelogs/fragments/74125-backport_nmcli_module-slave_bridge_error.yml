@@ -1,2 +1,0 @@
-minor_changes:
-- nmcli - fix the slaving of bridge interfaces (https://github.com/ansible/ansible/pull/74125).

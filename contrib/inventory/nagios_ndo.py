@@ -2,7 +2,7 @@
 
 # (c) 2014, Jonathan Lestrelin <jonathan.lestrelin@gmail.com>
 #
-# This file is part of Ansible,
+# This file is part of jeti,
 #
 # Ansible is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ Configuration is read from `nagios_ndo.ini`.
 import os
 import argparse
 import sys
-from ansible.module_utils.six.moves import configparser
+from jeti.module_utils.six.moves import configparser
 import json
 
 try:

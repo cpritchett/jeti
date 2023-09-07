@@ -1,3 +1,0 @@
----
-bugfixes:
-  - Fix issue with nxos_l2_interfaces where replaced doesn't remove superfluous config (https://github.com/ansible-collections/cisco.nxos/pull/55)

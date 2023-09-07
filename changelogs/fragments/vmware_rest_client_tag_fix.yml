@@ -1,2 +1,0 @@
-minor_changes:
-- Handle get_tags_for_object API correctly in vmware_rest_client.

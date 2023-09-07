@@ -2,7 +2,7 @@
 
 # (c) 2015, Dagobert Michelsen <dam@baltic-online.de>
 #
-# This file is part of Ansible,
+# This file is part of jeti,
 #
 # Ansible is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

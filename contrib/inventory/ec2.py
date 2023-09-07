@@ -137,7 +137,7 @@ These settings would produce a destination_format as the following:
 
 # (c) 2012, Peter Sankauskas
 #
-# This file is part of Ansible,
+# This file is part of jeti,
 #
 # Ansible is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -168,9 +168,9 @@ from boto import elasticache
 from boto import route53
 from boto import sts
 
-from ansible.module_utils import six
-from ansible.module_utils import ec2 as ec2_utils
-from ansible.module_utils.six.moves import configparser
+from jeti.module_utils import six
+from jeti.module_utils import ec2 as ec2_utils
+from jeti.module_utils.six.moves import configparser
 
 HAS_BOTO3 = False
 try:

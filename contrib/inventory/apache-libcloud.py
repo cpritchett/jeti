@@ -2,7 +2,7 @@
 
 # (c) 2013, Sebastien Goasguen <runseb@gmail.com>
 #
-# This file is part of Ansible,
+# This file is part of jeti,
 #
 # Ansible is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -36,8 +36,8 @@ import argparse
 import re
 from time import time
 
-from ansible.module_utils.six import iteritems, string_types
-from ansible.module_utils.six.moves import configparser as ConfigParser
+from jeti.module_utils.six import iteritems, string_types
+from jeti.module_utils.six.moves import configparser as ConfigParser
 from libcloud.compute.types import Provider
 from libcloud.compute.providers import get_driver
 import libcloud.security as sec
@@ -137,8 +137,8 @@ class LibcloudInventory(object):
 
         # Cache related
         cache_path = config.get('cache', 'cache_path')
-        self.cache_path_cache = cache_path + "/ansible-libcloud.cache"
-        self.cache_path_index = cache_path + "/ansible-libcloud.index"
+        self.cache_path_cache = cache_path + "/jeti-libcloud.cache"
+        self.cache_path_index = cache_path + "/jeti-libcloud.index"
         self.cache_max_age = config.getint('cache', 'cache_max_age')
 
     def parse_cli_args(self):

@@ -1,2 +1,0 @@
-bugfixes:
-  - "jenkins_job module: xml config encoding bugfix on python3"

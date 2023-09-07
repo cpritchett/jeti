@@ -1,3 +1,0 @@
----
-bugfixes:
-  - nxos_telemetry - Fix fact gathering for sensor-groups (https://github.com/ansible/ansible/pull/66439)

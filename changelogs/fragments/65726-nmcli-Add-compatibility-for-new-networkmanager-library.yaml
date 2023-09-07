@@ -1,2 +1,0 @@
-bugfixes:
-- nmcli - Add compatibility for new networkmanager library (https://github.com/ansible/ansible/pull/65726).

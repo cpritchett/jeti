@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # Copyright 2015 IIX Inc.
 #
-# This file is part of Ansible
+# This file is part of jeti
 #
 # Ansible is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -69,7 +69,7 @@ import sys
 import os
 import argparse
 from collections import defaultdict
-from ansible.module_utils.six.moves import configparser as ConfigParser
+from jeti.module_utils.six.moves import configparser as ConfigParser
 
 import json
 

@@ -4,7 +4,7 @@
 #          Chris Houseknecht <house@redhat.com>
 #          James Tanner <jtanner@redhat.com>
 #
-# This file is part of Ansible.
+# This file is part of jeti.
 #
 # Ansible is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -343,7 +343,7 @@ DOCKER_HOST=tcp://localhost:4243 ./docker.py --pretty
 DOCKER_DEFAULT_IP=1.2.3.4 ./docker.py --pretty
 
 # Run as input to a playbook:
-ansible-playbook -i ~/projects/ansible/contrib/inventory/docker.py docker_inventory_test.yml
+ansible-playbook -i ~/projects/jeti/contrib/inventory/docker.py docker_inventory_test.yml
 
 # Simple playbook to invoke with the above example:
 

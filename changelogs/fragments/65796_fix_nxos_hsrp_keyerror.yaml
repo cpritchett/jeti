@@ -1,3 +1,0 @@
----
-bugfixes:
-  - Fix nxos_hsrp throwing a KeyError for `auth_enc` (https://github.com/ansible/ansible/pull/65796)

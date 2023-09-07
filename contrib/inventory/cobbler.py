@@ -4,11 +4,11 @@
 Cobbler external inventory script
 =================================
 
-Ansible has a feature where instead of reading from /etc/ansible/hosts
+Ansible has a feature where instead of reading from /etc/jeti/hosts
 as a text file, it can query external programs to obtain the list
 of hosts, groups the hosts are in, and even variables to assign to each host.
 
-To use this, copy this file over /etc/ansible/hosts and chmod +x the file.
+To use this, copy this file over /etc/jeti/hosts and chmod +x the file.
 This, more or less, allows you to keep one central database containing
 info about all of your managed instances.
 
@@ -41,7 +41,7 @@ Changelog:
 
 # (c) 2012, Michael DeHaan <michael.dehaan@gmail.com>
 #
-# This file is part of Ansible,
+# This file is part of jeti,
 #
 # Ansible is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -66,8 +66,8 @@ import xmlrpclib
 
 import json
 
-from ansible.module_utils.six import iteritems
-from ansible.module_utils.six.moves import configparser as ConfigParser
+from jeti.module_utils.six import iteritems
+from jeti.module_utils.six.moves import configparser as ConfigParser
 
 # NOTE -- this file assumes Ansible is being accessed FROM the cobbler
 # server, so it does not attempt to login with a username and password.
@@ -152,8 +152,8 @@ class CobblerInventory(object):
 
         # Cache related
         cache_path = config.get('cobbler', 'cache_path')
-        self.cache_path_cache = cache_path + "/ansible-cobbler.cache"
-        self.cache_path_inventory = cache_path + "/ansible-cobbler.index"
+        self.cache_path_cache = cache_path + "/jeti-cobbler.cache"
+        self.cache_path_inventory = cache_path + "/jeti-cobbler.index"
         self.cache_max_age = config.getint('cobbler', 'cache_max_age')
 
     def parse_env_vars(self):
@@ -174,8 +174,8 @@ class CobblerInventory(object):
         # Cache related
         cache_path = os.getenv('COBBLER_cache_path', None)
         if(cache_path is not None):
-            self.cache_path_cache = cache_path + "/ansible-cobbler.cache"
-            self.cache_path_inventory = cache_path + "/ansible-cobbler.index"
+            self.cache_path_cache = cache_path + "/jeti-cobbler.cache"
+            self.cache_path_inventory = cache_path + "/jeti-cobbler.index"
 
         self.cache_max_age = int(os.getenv('COBBLER_cache_max_age', "30"))
 

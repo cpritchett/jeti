@@ -22,8 +22,8 @@ rpm-build
 # Mac OS X stuff...
 .DS_Store
 # manpage build stuff...
-docs/man/man1/ansible*.1
-docs/man/man1/ansible*.1.asciidoc.in
+docs/man/man1/jeti*.1
+docs/man/man1/jeti*.1.asciidoc.in
 docs/man/man3/*
 # Sublime stuff
 *.sublime-project
@@ -32,8 +32,8 @@ docs/man/man3/*
 docs/docsite/_build
 docs/docsite/*.html
 docs/docsite/htmlout
-docs/docsite/rst/cli/ansible-*.rst
-docs/docsite/rst/cli/ansible.rst
+docs/docsite/rst/cli/jeti-*.rst
+docs/docsite/rst/cli/jeti.rst
 docs/docsite/rst/dev_guide/collections_galaxy_meta.rst
 docs/docsite/rst/dev_guide/testing/sanity/index.rst.new
 docs/docsite/rst/modules/*.rst
@@ -77,7 +77,7 @@ ansible.egg-info/
 !/test/integration/cloud-config-*.*.template
 .python-version
 # Release directory
-packaging/release/ansible_release
+packaging/release/jeti_release
 /.cache/
 /test/results/
 /test/integration/cloud-config-aws.yml

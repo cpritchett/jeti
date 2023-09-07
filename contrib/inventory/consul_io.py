@@ -3,7 +3,7 @@
 #
 # (c) 2015, Steve Gargan <steve.gargan@gmail.com>
 #
-# This file is part of Ansible,
+# This file is part of jeti,
 #
 # Ansible is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -136,7 +136,7 @@ import re
 import argparse
 import sys
 
-from ansible.module_utils.six.moves import configparser
+from jeti.module_utils.six.moves import configparser
 
 
 def get_log_filename():
@@ -198,7 +198,7 @@ except ImportError as e:
     sys.exit("""failed=True msg='python-consul required for this module.
 See https://python-consul.readthedocs.io/en/latest/#installation'""")
 
-from ansible.module_utils.six import iteritems
+from jeti.module_utils.six import iteritems
 
 
 class ConsulInventory(object):
@@ -518,7 +518,7 @@ class ConsulConfig(dict):
         scheme = 'http'
 
         if hasattr(self, 'url'):
-            from ansible.module_utils.six.moves.urllib.parse import urlparse
+            from jeti.module_utils.six.moves.urllib.parse import urlparse
             o = urlparse(self.url)
             if o.hostname:
                 host = o.hostname

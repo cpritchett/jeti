@@ -1,2 +1,0 @@
-minor_changes:
-  - "module_defaults - add module iam_saml_federation from community.aws to aws module_defaults group (https://github.com/ansible/ansible/pull/73669)."

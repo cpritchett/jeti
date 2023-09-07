@@ -1,2 +1,0 @@
-bugfixes:
-- Ensure connection with remote host is created before invoking execute_command() from module side (https://github.com/ansible/ansible/issues/61596)

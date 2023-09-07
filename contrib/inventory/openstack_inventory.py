@@ -27,7 +27,7 @@
 #  - Current directory
 #  - ~/.config/openstack/clouds.yaml
 #  - /etc/openstack/clouds.yaml
-#  - /etc/ansible/openstack.yml
+#  - /etc/jeti/openstack.yml
 # The clouds.yaml file can contain entries for multiple clouds and multiple
 # regions of those clouds. If it does, this inventory module will by default
 # connect to all of them and present them as one contiguous inventory.  You
@@ -65,7 +65,7 @@ import openstack as sdk
 from openstack.cloud import inventory as sdk_inventory
 from openstack.config import loader as cloud_config
 
-CONFIG_FILES = ['/etc/ansible/openstack.yaml', '/etc/ansible/openstack.yml']
+CONFIG_FILES = ['/etc/jeti/openstack.yaml', '/etc/jeti/openstack.yml']
 
 
 def get_groups_from_server(server_vars, namegroup=True):

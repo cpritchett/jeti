@@ -1,2 +1,0 @@
-bugfixes:
-- grafana_datasource module no longer fails if datasource name contains space characters.

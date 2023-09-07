@@ -40,8 +40,8 @@ if LooseVersion(requests.__version__) < LooseVersion('1.1.0'):
 
 from requests.auth import HTTPBasicAuth
 
-from ansible.module_utils._text import to_text
-from ansible.module_utils.six.moves import configparser as ConfigParser
+from jeti.module_utils._text import to_text
+from jeti.module_utils.six.moves import configparser as ConfigParser
 
 
 def json_format_dict(data, pretty=False):
@@ -64,7 +64,7 @@ class ForemanInventory(object):
         self.hostcollections = dict()  # host collections
         self.session = None   # Requests session
         self.config_paths = [
-            "/etc/ansible/foreman.ini",
+            "/etc/jeti/foreman.ini",
             os.path.dirname(os.path.realpath(__file__)) + '/foreman.ini',
         ]
         env_value = os.environ.get('FOREMAN_INI_PATH')

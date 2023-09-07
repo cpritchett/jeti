@@ -3,7 +3,7 @@
 # (c) 2013, Greg Buehler
 # (c) 2018, Filippo Ferrazini
 #
-# This file is part of Ansible,
+# This file is part of jeti,
 #
 # Ansible is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ from __future__ import print_function
 import os
 import sys
 import argparse
-from ansible.module_utils.six.moves import configparser
+from jeti.module_utils.six.moves import configparser
 
 try:
     from zabbix_api import ZabbixAPI

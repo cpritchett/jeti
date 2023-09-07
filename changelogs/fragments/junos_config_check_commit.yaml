@@ -1,2 +1,0 @@
-bugfixes:
-- junos_config - allow validate config before committing to running configuration (https://github.com/ansible/ansible/pull/61969)

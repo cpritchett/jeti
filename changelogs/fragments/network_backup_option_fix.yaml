@@ -1,2 +1,0 @@
-bugfixes:
-- Fix for backup option dest key for network modules (https://github.com/ansible/ansible/issues/57131).

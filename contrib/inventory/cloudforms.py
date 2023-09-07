@@ -22,14 +22,14 @@
 
 from __future__ import print_function
 import argparse
-from ansible.module_utils.six.moves import configparser as ConfigParser
+from jeti.module_utils.six.moves import configparser as ConfigParser
 import os
 import re
 from time import time
 import requests
 from requests.auth import HTTPBasicAuth
 import warnings
-from ansible.errors import AnsibleError
+from jeti.errors import jetiError
 
 import json
 
@@ -104,7 +104,7 @@ class CloudFormsInventory(object):
         config = ConfigParser.SafeConfigParser()
         config_paths = [
             os.path.dirname(os.path.realpath(__file__)) + '/cloudforms.ini',
-            "/etc/ansible/cloudforms.ini",
+            "/etc/jeti/cloudforms.ini",
         ]
 
         env_value = os.environ.get('CLOUDFORMS_INI_PATH')

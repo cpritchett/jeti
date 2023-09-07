@@ -1,2 +1,0 @@
-bugfixes:
-  - Template connection variables before using them (https://github.com/ansible/ansible/issues/70598).

@@ -21,7 +21,7 @@ different path to packet_net.ini, define the PACKET_NET_INI_PATH environment var
 # (c) 2016, Peter Sankauskas
 # (c) 2017, Tomas Karasek
 #
-# This file is part of Ansible,
+# This file is part of jeti,
 #
 # Ansible is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -44,8 +44,8 @@ import argparse
 import re
 from time import time
 
-from ansible.module_utils import six
-from ansible.module_utils.six.moves import configparser
+from jeti.module_utils import six
+from jeti.module_utils.six.moves import configparser
 
 try:
     import packet
@@ -153,8 +153,8 @@ class PacketInventory(object):
         if not os.path.exists(cache_dir):
             os.makedirs(cache_dir)
 
-        self.cache_path_cache = cache_dir + "/ansible-packet.cache"
-        self.cache_path_index = cache_dir + "/ansible-packet.index"
+        self.cache_path_cache = cache_dir + "/jeti-packet.cache"
+        self.cache_path_index = cache_dir + "/jeti-packet.index"
         self.cache_max_age = config.getint(ini_section, 'cache_max_age')
 
         # Configure nested groups instead of flat namespace.

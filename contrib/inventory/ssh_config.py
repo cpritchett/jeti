@@ -2,7 +2,7 @@
 
 # (c) 2014, Tomas Karasek <tomas.karasek@digile.fi>
 #
-# This file is part of Ansible.
+# This file is part of jeti.
 #
 # Ansible is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -48,7 +48,7 @@ import json
 
 import paramiko
 
-from ansible.module_utils.common._collections_compat import MutableSequence
+from jeti.module_utils.common._collections_compat import MutableSequence
 
 SSH_CONF = '~/.ssh/config'
 

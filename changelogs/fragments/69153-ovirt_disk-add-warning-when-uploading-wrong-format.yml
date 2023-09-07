@@ -1,2 +1,0 @@
-bugfixes:
-  - "ovirt_disk: add warning when uploading wrong format"

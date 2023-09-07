@@ -1,3 +1,0 @@
----
-bugfixes:
-  - Remove unused and invalid import from FRR cliconf plugin (https://github.com/ansible/ansible/pull/67790).

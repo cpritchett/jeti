@@ -1,7 +1,7 @@
 ---
 # This file provides the configuration information for the Infoblox dynamic
 # inventory script that is used to dynamically pull host information from NIOS.
-# This file should be copied to /etc/ansible/infoblox.yaml in order for the
+# This file should be copied to /etc/jeti/infoblox.yaml in order for the
 # dynamic script to find it.
 
 # Sets the provider arguments for authenticating to the Infoblox server to

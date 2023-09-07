@@ -1,3 +1,0 @@
----
-bugfixes:
-- "Fix traceback error in IOS and IOSXR when ran with empty config (https://github.com/ansible/ansible/pull/62400)"

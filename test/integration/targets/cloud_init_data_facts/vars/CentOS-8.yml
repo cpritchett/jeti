@@ -1,3 +1,0 @@
-pkgs_required:
-  - cloud-init
-  - systemd-udev

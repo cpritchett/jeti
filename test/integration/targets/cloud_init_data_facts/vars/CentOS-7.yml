@@ -1,3 +1,0 @@
-pkgs_required:
-  - cloud-init
-  - systemd # This provides 'udev' as a virtual pkg

@@ -23,7 +23,7 @@ all: Contains all hosts defined in Scaleway.
 
 # (c) 2017, Paul B. <paul@bonaud.fr>
 #
-# This file is part of Ansible,
+# This file is part of jeti,
 #
 # Ansible is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -41,8 +41,8 @@ all: Contains all hosts defined in Scaleway.
 import copy
 import os
 import requests
-from ansible.module_utils import six
-from ansible.module_utils.six.moves import configparser
+from jeti.module_utils import six
+from jeti.module_utils.six.moves import configparser
 import sys
 import time
 import traceback

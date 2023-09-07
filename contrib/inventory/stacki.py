@@ -19,7 +19,7 @@
 # Configure stacki.yml with proper auth information and place in the following:
 #  - ../inventory/stacki.yml
 #  - /etc/stacki/stacki.yml
-#  - /etc/ansible/stacki.yml
+#  - /etc/jeti/stacki.yml
 # The stacki.yml file can contain entries for authentication information
 # regarding the Stacki front-end node.
 #
@@ -57,7 +57,7 @@ except Exception:
     sys.exit('requests package is required for this inventory script')
 
 
-CONFIG_FILES = ['/etc/stacki/stacki.yml', '/etc/ansible/stacki.yml']
+CONFIG_FILES = ['/etc/stacki/stacki.yml', '/etc/jeti/stacki.yml']
 
 
 def stack_auth(params):

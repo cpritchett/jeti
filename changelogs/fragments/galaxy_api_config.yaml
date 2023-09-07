@@ -1,2 +1,0 @@
-bugfixes:
-  - ansible-galaxy -  Stop appendding '/api' to configured galaxy urls. Special case migrated configs.

@@ -1,2 +1,0 @@
-bugfixes:
-- mysql - Fix ``mysql_connect`` function's logic related to the ``cursor_class`` keyword argument (https://github.com/ansible/ansible/pull/61832).

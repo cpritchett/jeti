@@ -1,2 +1,0 @@
-bugfixes:
-  - avoid clobbering existing facts inside loop when task also returns ansible_facts.

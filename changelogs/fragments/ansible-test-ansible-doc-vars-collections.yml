@@ -1,2 +1,0 @@
-bugfixes:
-- "ansible-test - disable ansible-doc sanity test for vars plugins in collections, which are not supported by Ansible 2.9 (https://github.com/ansible/ansible/pull/72336)."

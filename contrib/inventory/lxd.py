@@ -4,7 +4,7 @@
 # (c) 2014, Hiroaki Nakamura <hnakamur@gmail.com>
 # (c) 2016, Andew Clarke <andrew@oscailte.org>
 #
-# This file is based on https://github.com/ansible/ansible/blob/devel/plugins/inventory/libvirt_lxc.py which is part of Ansible,
+# This file is based on https://github.com/jeti/jeti/blob/devel/plugins/inventory/libvirt_lxc.py which is part of jeti,
 # and https://github.com/hnakamur/lxc-ansible-playbooks/blob/master/provisioning/inventory-lxc.py
 #
 # NOTE, this file has some obvious limitations, improvements welcome
@@ -28,7 +28,7 @@ import distutils.spawn
 import sys
 import json
 
-from ansible.module_utils.six.moves import configparser
+from jeti.module_utils.six.moves import configparser
 
 # Set up defaults
 resource = 'local:'

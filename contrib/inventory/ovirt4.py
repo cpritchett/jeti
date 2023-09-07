@@ -3,7 +3,7 @@
 #
 # Copyright (c) 2016 Red Hat, Inc.
 #
-# This file is part of Ansible
+# This file is part of jeti
 #
 # Ansible is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -65,7 +65,7 @@ import sys
 
 from collections import defaultdict
 
-from ansible.module_utils.six.moves import configparser
+from jeti.module_utils.six.moves import configparser
 
 import json
 

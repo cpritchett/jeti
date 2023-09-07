@@ -1,2 +1,0 @@
-bugfixes:
-  - fix all checkpoint modules to be able to get parameter with value false (https://github.com/ansible/ansible/pull/65040)

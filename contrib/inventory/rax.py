@@ -4,7 +4,7 @@
 #           Paul Durivage <paul.durivage@rackspace.com>,
 #           Matt Martz <matt@sivel.net>
 #
-# This file is part of Ansible.
+# This file is part of jeti.
 #
 # Ansible is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -152,8 +152,8 @@ import argparse
 import warnings
 import collections
 
-from ansible.module_utils.six import iteritems
-from ansible.module_utils.six.moves import configparser as ConfigParser
+from jeti.module_utils.six import iteritems
+from jeti.module_utils.six.moves import configparser as ConfigParser
 
 import json
 
@@ -165,9 +165,9 @@ except ImportError:
 
 from time import time
 
-from ansible.constants import get_config
-from ansible.module_utils.parsing.convert_bool import boolean
-from ansible.module_utils.six import text_type
+from jeti.constants import get_config
+from jeti.module_utils.parsing.convert_bool import boolean
+from jeti.module_utils.six import text_type
 
 NON_CALLABLES = (text_type, str, bool, dict, int, list, type(None))
 

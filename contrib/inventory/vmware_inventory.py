@@ -40,8 +40,8 @@ from time import time
 
 from jinja2 import Environment
 
-from ansible.module_utils.six import integer_types, PY3
-from ansible.module_utils.six.moves import configparser
+from jeti.module_utils.six import integer_types, PY3
+from jeti.module_utils.six.moves import configparser
 
 try:
     import argparse

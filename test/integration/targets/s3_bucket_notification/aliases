@@ -1,3 +1,0 @@
-cloud/aws
-shippable/aws/group2
-disabled  # Due to change in AWS lambda behavior, which this test uses, this test will no longer pass reliably

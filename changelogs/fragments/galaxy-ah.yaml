@@ -1,2 +1,0 @@
-minor_changes:
-- Refactored ``ansible-galaxy collections`` API code to be more friendly for future bugfixes

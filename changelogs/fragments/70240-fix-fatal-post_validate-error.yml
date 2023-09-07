@@ -1,2 +1,0 @@
-bugfixes:
-  - TaskExecutor - Handle unexpected errors as failed while post validating loops (https://github.com/ansible/ansible/issues/70050).

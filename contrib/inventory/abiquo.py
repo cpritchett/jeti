@@ -26,7 +26,7 @@ imagetemplate: Creates a host group for each image template containing all hosts
 
 # (c) 2014, Daniel Beneyto <daniel.beneyto@abiquo.com>
 #
-# This file is part of Ansible,
+# This file is part of jeti,
 #
 # Ansible is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -47,8 +47,8 @@ import time
 
 import json
 
-from ansible.module_utils.six.moves import configparser as ConfigParser
-from ansible.module_utils.urls import open_url
+from jeti.module_utils.six.moves import configparser as ConfigParser
+from jeti.module_utils.urls import open_url
 
 
 def api_get(link, config):

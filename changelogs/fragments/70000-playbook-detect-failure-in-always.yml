@@ -1,2 +1,0 @@
-bugfixes:
-  - playbooks - detect and propagate failures in ``always`` blocks after ``rescue`` (https://github.com/ansible/ansible/issues/70000)

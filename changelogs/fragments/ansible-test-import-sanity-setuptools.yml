@@ -1,2 +1,0 @@
-bugfixes:
-    - ansible-test - Avoid upcoming ``setuptools`` breaking changes by limiting the version installed.

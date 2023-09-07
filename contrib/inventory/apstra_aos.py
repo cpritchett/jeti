@@ -2,7 +2,7 @@
 #
 # (c) 2017 Apstra Inc, <community@apstra.com>
 #
-# This file is part of Ansible
+# This file is part of jeti
 #
 # Ansible is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,12 +21,12 @@
 Apstra AOS external inventory script
 ====================================
 
-Ansible has a feature where instead of reading from /etc/ansible/hosts
+Ansible has a feature where instead of reading from /etc/jeti/hosts
 as a text file, it can query external programs to obtain the list
 of hosts, groups the hosts are in, and even variables to assign to each host.
 
 To use this:
- - copy this file over /etc/ansible/hosts and chmod +x the file.
+ - copy this file over /etc/jeti/hosts and chmod +x the file.
  - Copy both files (.py and .ini) in your preferred directory
 
 More information about Ansible Dynamic Inventory here
@@ -66,7 +66,7 @@ try:
 except ImportError:
     HAS_AOS_PYEZ = False
 
-from ansible.module_utils.six.moves import configparser
+from jeti.module_utils.six.moves import configparser
 
 
 """

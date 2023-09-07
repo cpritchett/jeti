@@ -1,2 +1,0 @@
-minor_changes:
-- "ansible-test - module validation now allows ``elements:`` for return value documentation."

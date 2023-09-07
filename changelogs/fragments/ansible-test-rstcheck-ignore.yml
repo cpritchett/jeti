@@ -1,2 +1,0 @@
-bugfixes:
-- "ansible-test - allow to ignore ``rstcheck`` errors (https://github.com/ansible/ansible/pull/75272)."

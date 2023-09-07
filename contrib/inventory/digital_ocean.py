@@ -10,7 +10,7 @@ In addition to the --list and --host options used by Ansible, there are options
 for generating JSON of other DigitalOcean data.  This is useful when creating
 droplets.  For example, --regions will return all the DigitalOcean Regions.
 This information can also be easily found in the cache file, whose default
-location is /tmp/ansible-digital_ocean.cache).
+location is /tmp/jeti-digital_ocean.cache).
 
 The --pretty (-p) option pretty-prints the output for better human readability.
 
@@ -117,9 +117,9 @@ optional arguments:
 # (c) 2017, Abhijeet Kasurde <akasurde@redhat.com>
 #
 # Inspired by the EC2 inventory plugin:
-# https://github.com/ansible/ansible/blob/devel/contrib/inventory/ec2.py
+# https://github.com/jeti/jeti/blob/devel/contrib/inventory/ec2.py
 #
-# This file is part of Ansible,
+# This file is part of jeti,
 #
 # Ansible is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -262,7 +262,7 @@ class DigitalOceanInventory(object):
             sys.exit(0)
 
         # Manage cache
-        self.cache_filename = self.cache_path + "/ansible-digital_ocean.cache"
+        self.cache_filename = self.cache_path + "/jeti-digital_ocean.cache"
         self.cache_refreshed = False
 
         if self.is_cache_valid():

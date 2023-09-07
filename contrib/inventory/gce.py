@@ -80,7 +80,7 @@ import argparse
 
 from time import time
 
-from ansible.module_utils.six.moves import configparser
+from jeti.module_utils.six.moves import configparser
 
 import logging
 logging.getLogger('libcloud.common.google').addHandler(logging.NullHandler())

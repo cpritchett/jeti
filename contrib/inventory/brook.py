@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # Copyright 2016 Doalitic.
 #
-# This file is part of Ansible
+# This file is part of jeti
 #
 # Ansible is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -79,7 +79,7 @@ Version: 0.2
 import sys
 import os
 
-from ansible.module_utils.six.moves.configparser import SafeConfigParser as ConfigParser
+from jeti.module_utils.six.moves.configparser import SafeConfigParser as ConfigParser
 
 import json
 

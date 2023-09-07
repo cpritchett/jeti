@@ -1,3 +1,0 @@
----
-bugfixes:
-  - mongodb_replicaset - fixes authentication to determine replicaset name (https://github.com/ansible-collections/community.mongodb/issues/136).

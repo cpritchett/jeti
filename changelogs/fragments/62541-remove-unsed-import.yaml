@@ -1,3 +1,0 @@
----
-bugfixes:
-  - Remove unused import from iosxr l3_interfaces facts library.

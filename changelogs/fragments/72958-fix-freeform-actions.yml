@@ -1,2 +1,0 @@
-bugfixes:
-- Freeform actions did not work with ``ansible.builtin.`` or ``ansible.legacy.`` FQCN (https://github.com/ansible/ansible/pull/72958).

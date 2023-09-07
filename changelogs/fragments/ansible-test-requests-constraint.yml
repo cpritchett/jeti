@@ -1,2 +1,0 @@
-bugfixes:
-    - ansible-test - Add constraint for ``requests < 2.28.0`` for Python 3.6 and earlier.

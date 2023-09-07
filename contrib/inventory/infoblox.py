@@ -2,7 +2,7 @@
 #
 # (c) 2018, Red Hat, Inc.
 #
-# This file is part of Ansible
+# This file is part of jeti
 #
 # Ansible is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,16 +22,16 @@ import sys
 import json
 import argparse
 
-from ansible.parsing.dataloader import DataLoader
-from ansible.module_utils.six import iteritems
-from ansible.module_utils._text import to_text
-from ansible.module_utils.net_tools.nios.api import WapiInventory
-from ansible.module_utils.net_tools.nios.api import normalize_extattrs, flatten_extattrs
+from jeti.parsing.dataloader import DataLoader
+from jeti.module_utils.six import iteritems
+from jeti.module_utils._text import to_text
+from jeti.module_utils.net_tools.nios.api import WapiInventory
+from jeti.module_utils.net_tools.nios.api import normalize_extattrs, flatten_extattrs
 
 
 CONFIG_FILES = [
-    '/etc/ansible/infoblox.yaml',
-    '/etc/ansible/infoblox.yml'
+    '/etc/jeti/infoblox.yaml',
+    '/etc/jeti/infoblox.yml'
 ]
 
 
@@ -54,7 +54,7 @@ def main():
         if os.path.exists(config_file):
             break
     else:
-        sys.stdout.write('unable to locate config file at /etc/ansible/infoblox.yaml\n')
+        sys.stdout.write('unable to locate config file at /etc/jeti/infoblox.yaml\n')
         sys.exit(-1)
 
     try:

@@ -3,7 +3,7 @@
 # Copyright (c) 2016 Matt Davis, <mdavis@ansible.com>
 #                    Chris Houseknecht, <house@redhat.com>
 #
-# This file is part of Ansible
+# This file is part of jeti
 #
 # Ansible is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@
 Important note (2018/10)
 ========================
 This inventory script is in maintenance mode: only critical bug fixes but no new features.
-There's new Azure external inventory script at https://github.com/ansible/ansible/blob/devel/lib/ansible/plugins/inventory/azure_rm.py,
+There's new Azure external inventory script at https://github.com/jeti/jeti/blob/devel/lib/jeti/plugins/inventory/azure_rm.py,
 with better performance and latest new features. Please go to the link to get latest Azure inventory.
 
 Azure External Inventory Script
@@ -202,8 +202,8 @@ import sys
 import inspect
 
 from os.path import expanduser
-from ansible.module_utils.six.moves import configparser as cp
-import ansible.module_utils.six.moves.urllib.parse as urlparse
+from jeti.module_utils.six.moves import configparser as cp
+import jeti.module_utils.six.moves.urllib.parse as urlparse
 
 HAS_AZURE = True
 HAS_AZURE_EXC = None
@@ -236,7 +236,7 @@ except ImportError:
     CLIError = Exception
 
 try:
-    from ansible.release import __version__ as ansible_version
+    from jeti.release import __version__ as ansible_version
 except ImportError:
     ansible_version = 'unknown'
 
@@ -266,7 +266,7 @@ AZURE_CONFIG_SETTINGS = dict(
 )
 
 AZURE_MIN_VERSION = "2.0.0"
-ANSIBLE_USER_AGENT = 'Ansible/{0}'.format(ansible_version)
+ANSIBLE_USER_AGENT = 'Jeti/{0}'.format(ansible_version)
 
 
 def azure_id_to_dict(id):

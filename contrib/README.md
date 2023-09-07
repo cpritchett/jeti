@@ -11,7 +11,7 @@ Before 2.4 introduced inventory plugins, inventory scripts were the only way to 
 Starting with Ansible version 2.4, they are enabled via the 'script' inventory plugin.
 Examples of use include discovering inventory from EC2 or pulling it from Cobbler. These could also be used to interface with LDAP or the database.
 
-`chmod +x` an inventory plugin and either name it `/etc/ansible/hosts` or use `ansible -i /path/to/inventory/script`. You might also need to copy a configuration file with the same name and/or set environment variables. The scripts or configuration files can provide more details.
+`chmod +x` an inventory plugin and either name it `/etc/jeti/hosts` or use `ansible -i /path/to/inventory/script`. You might also need to copy a configuration file with the same name and/or set environment variables. The scripts or configuration files can provide more details.
 
 vault
 =====
@@ -22,5 +22,5 @@ Vault scripts provided here use this facility to retrieve the vault secret from 
 contributions welcome
 =====================
 
-We are only accepting bugfixes for inventory scripts. If you want to add features or a new inventory type, target [inventory plugins](https://docs.ansible.com/ansible/latest/dev_guide/developing_inventory.html#inventory-plugins).
+We are only accepting bugfixes for inventory scripts. If you want to add features or a new inventory type, target [inventory plugins](https://docs.ansible.com/jeti/latest/dev_guide/developing_inventory.html#inventory-plugins).
 

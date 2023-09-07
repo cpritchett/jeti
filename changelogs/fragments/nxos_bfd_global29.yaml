@@ -1,2 +1,0 @@
-bugfixes:
-- Fix nxos_bfd_global cmd order and tests (https://github.com/ansible/ansible/pull/61943).

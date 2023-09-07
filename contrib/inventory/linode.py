@@ -57,7 +57,7 @@ just adapted that for Linode.
 
 # (c) 2013, Dan Slimmon
 #
-# This file is part of Ansible,
+# This file is part of jeti,
 #
 # Ansible is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -108,7 +108,7 @@ except Exception:
 load_chube_config()
 
 # Imports for ansible
-from ansible.module_utils.six.moves import configparser as ConfigParser
+from jeti.module_utils.six.moves import configparser as ConfigParser
 
 
 class LinodeInventory(object):
@@ -163,8 +163,8 @@ class LinodeInventory(object):
 
         # Cache related
         cache_path = config.get('linode', 'cache_path')
-        self.cache_path_cache = cache_path + "/ansible-linode.cache"
-        self.cache_path_index = cache_path + "/ansible-linode.index"
+        self.cache_path_cache = cache_path + "/jeti-linode.cache"
+        self.cache_path_index = cache_path + "/jeti-linode.index"
         self.cache_max_age = config.getint('linode', 'cache_max_age')
         self.use_public_ip = config.getboolean('linode', 'use_public_ip')
 

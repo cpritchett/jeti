@@ -2,7 +2,7 @@
 
 # (c) 2015, Yannig Perre <yannig.perre@gmail.com>
 #
-# This file is part of Ansible,
+# This file is part of jeti,
 #
 # Ansible is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -36,7 +36,7 @@ import re
 import argparse
 import sys
 
-from ansible.module_utils.six.moves import configparser
+from jeti.module_utils.six.moves import configparser
 import json
 
 try:

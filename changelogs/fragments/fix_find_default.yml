@@ -1,2 +1,0 @@
-bugfixes:
-  - find - fix default pattern when use_regex is true (https://github.com/ansible/ansible/issues/50067).

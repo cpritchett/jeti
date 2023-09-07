@@ -1,2 +1,0 @@
-bugfixes:
-  - "network_cli - ensure connection is established before returning the current prompt"

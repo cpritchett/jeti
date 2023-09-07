@@ -1,3 +1,0 @@
-bugfixes:
-- Alter task_executor's start_connection to support newer modules from
-  collections which expect to send task UUID.

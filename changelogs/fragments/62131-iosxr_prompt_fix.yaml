@@ -1,2 +1,0 @@
-bugfixes:
-  - iosxr - support cases where a normal commit operation also throws a prompt (https://github.com/ansible/ansible/pull/62132)

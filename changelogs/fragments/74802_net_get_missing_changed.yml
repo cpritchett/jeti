@@ -1,3 +1,0 @@
----
-bugfixes:
-  - Backport to fix missing ``changed`` in net_get (https://github.com/ansible/ansible/issues/74802)
