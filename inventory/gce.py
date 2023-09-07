@@ -80,7 +80,9 @@ import argparse
 
 from time import time
 
-from jeti.module_utils.six.moves import configparser
+# from jeti.module_utils.six.moves import configparser
+import configparser
+
 
 import logging
 logging.getLogger('libcloud.common.google').addHandler(logging.NullHandler())
