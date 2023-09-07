@@ -4,7 +4,7 @@
 EC2 external inventory script
 =================================
 
-Generates inventory that Ansible can understand by making API request to
+Generates inventory that Jeti can understand by making API request to
 AWS EC2 using the Boto library.
 
 NOTE: This script assumes Ansible is being executed where the environment
@@ -137,20 +137,20 @@ These settings would produce a destination_format as the following:
 
 # (c) 2012, Peter Sankauskas
 #
-# This file is part of jeti,
+# This file is part of jeti (and was forked from Ansible)
 #
-# Ansible is free software: you can redistribute it and/or modify
+# Jeti is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# Ansible is distributed in the hope that it will be useful,
+# Jeti is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with Ansible.  If not, see <http://www.gnu.org/licenses/>.
+# along with Jeti.  If not, see <http://www.gnu.org/licenses/>.
 
 ######################################################################
 

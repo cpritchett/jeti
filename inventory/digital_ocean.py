@@ -4,9 +4,9 @@
 DigitalOcean external inventory script
 ======================================
 
-Generates Ansible inventory of DigitalOcean Droplets.
+Generates Jeti inventory of DigitalOcean Droplets.
 
-In addition to the --list and --host options used by Ansible, there are options
+In addition to the --list and --host options used by Jeti, there are options
 for generating JSON of other DigitalOcean data.  This is useful when creating
 droplets.  For example, --regions will return all the DigitalOcean Regions.
 This information can also be easily found in the cache file, whose default
@@ -81,7 +81,7 @@ usage: digital_ocean.py [-h] [--list] [--host HOST] [--all] [--droplets]
                         [--cache-max_age CACHE_MAX_AGE] [--force-cache]
                         [--refresh-cache] [--env] [--api-token API_TOKEN]
 
-Produce an Ansible Inventory file based on DigitalOcean credentials
+Produce a Jeti Inventory based on DigitalOcean credentials
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -119,20 +119,20 @@ optional arguments:
 # Inspired by the EC2 inventory plugin:
 # https://github.com/jeti/jeti/blob/devel/contrib/inventory/ec2.py
 #
-# This file is part of jeti,
+# This file is part of jeti (and was forked from Ansible)
 #
-# Ansible is free software: you can redistribute it and/or modify
+# Jeti is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# Ansible is distributed in the hope that it will be useful,
+# Jeti is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with Ansible.  If not, see <http://www.gnu.org/licenses/>.
+# along with Jeti.  If not, see <http://www.gnu.org/licenses/>.
 
 ######################################################################
 

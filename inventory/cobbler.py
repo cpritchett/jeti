@@ -4,15 +4,7 @@
 Cobbler external inventory script
 =================================
 
-Ansible has a feature where instead of reading from /etc/jeti/hosts
-as a text file, it can query external programs to obtain the list
-of hosts, groups the hosts are in, and even variables to assign to each host.
-
-To use this, copy this file over /etc/jeti/hosts and chmod +x the file.
-This, more or less, allows you to keep one central database containing
-info about all of your managed instances.
-
-This script is an example of sourcing that data from Cobbler
+This script is an example of sourcing inventory data from Cobbler
 (https://cobbler.github.io).  With cobbler each --mgmt-class in cobbler
 will correspond to a group in Ansible, and --ks-meta variables will be
 passed down for use in templates or even in argument lines.
@@ -43,18 +35,18 @@ Changelog:
 #
 # This file is part of jeti,
 #
-# Ansible is free software: you can redistribute it and/or modify
+# Jeti is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# Ansible is distributed in the hope that it will be useful,
+# Jeti is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with Ansible.  If not, see <https://www.gnu.org/licenses/>.
+# along with Jeti.  If not, see <https://www.gnu.org/licenses/>.
 
 ######################################################################
 
