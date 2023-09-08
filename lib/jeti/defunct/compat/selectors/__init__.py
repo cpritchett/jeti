@@ -1,4 +1,4 @@
-# (c) 2020, Felix Fontein <felix@fontein.de>
+# (c) 2014, 2017 Toshio Kuratomi <tkuratomi@ansible.com>
 #
 # This file is part of Jeti
 #
@@ -14,20 +14,17 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Jeti.  If not, see <http://www.gnu.org/licenses/>.
+
+# Make coding more python3-ish
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
-
-def add_internal_fqcns(names):
-    '''
-    Given a sequence of action/module names, returns a list of these names
-    with the same names with the prefixes `ansible.builtin.` and
-    `ansible.legacy.` added for all names that are not already FQCNs.
-    '''
-    result = []
-    for name in names:
-        result.append(name)
-        if '.' not in name:
-            result.append('ansible.builtin.%s' % name)
-            result.append('ansible.legacy.%s' % name)
-    return result
+'''
+Compat selectors library.  Python-3.5 has this builtin.  The selectors2
+package exists on pypi to backport the functionality as far as python-2.6.
+Implementation previously resided here - maintaining this file after the
+move to ansible.module_utils for code backwards compatibility.
+'''
+import sys
+from jeti.module_utils.compat import selectors
+sys.modules['ansible.compat.selectors'] = selectors

@@ -165,20 +165,20 @@ These settings would produce a destination_format as the following:
 
 # (c) 2012, Peter Sankauskas
 #
-# This file is part of jeti,
+# This file is part of jeti (and was forked from Ansible)
 #
-# Ansible is free software: you can redistribute it and/or modify
+# Jeti is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# Ansible is distributed in the hope that it will be useful,
+# Jeti is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with Ansible.  If not, see <http://www.gnu.org/licenses/>.
+# along with Jeti.  If not, see <http://www.gnu.org/licenses/>.
 
 ######################################################################
 
@@ -561,7 +561,7 @@ class Ec2Inventory(object):
     def parse_cli_args(self):
         ''' Command line argument processing '''
 
-        parser = argparse.ArgumentParser(description='Produce an Ansible Inventory file based on EC2')
+        parser = argparse.ArgumentParser(description='Produce a Jeti Inventory file based on EC2')
         parser.add_argument('--list', action='store_true', default=True,
                             help='List instances (default: True)')
         parser.add_argument('--host', action='store',
@@ -1723,7 +1723,7 @@ class Ec2Inventory(object):
         return re.sub('([a-z0-9])([A-Z])', r'\1_\2', temp).lower()
 
     def to_safe(self, word):
-        ''' Converts 'bad' characters in a string to underscores so they can be used as Ansible groups '''
+        ''' Converts 'bad' characters in a string to underscores so they can be used as Jeti groups '''
         regex = r"[^A-Za-z0-9\_"
         if not self.replace_dash_in_groups:
             regex += r"\-"

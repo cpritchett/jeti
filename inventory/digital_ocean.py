@@ -4,9 +4,9 @@
 DigitalOcean external inventory script
 ======================================
 
-Generates Ansible inventory of DigitalOcean Droplets.
+Generates Jeti inventory of DigitalOcean Droplets.
 
-In addition to the --list and --host options used by Ansible, there are options
+In addition to the --list and --host options used by Jeti, there are options
 for generating JSON of other DigitalOcean data.  This is useful when creating
 droplets.  For example, --regions will return all the DigitalOcean Regions.
 This information can also be easily found in the cache file, whose default
@@ -81,13 +81,13 @@ usage: digital_ocean.py [-h] [--list] [--host HOST] [--all] [--droplets]
                         [--cache-max_age CACHE_MAX_AGE] [--force-cache]
                         [--refresh-cache] [--env] [--api-token API_TOKEN]
 
-Produce an Ansible Inventory file based on DigitalOcean credentials
+Produce a Jeti Inventory based on DigitalOcean credentials
 
 optional arguments:
   -h, --help            show this help message and exit
-  --list                List all active Droplets as Ansible inventory
+  --list                List all active Droplets as Jeti inventory
                         (default: True)
-  --host HOST           Get all Ansible inventory variables about a specific
+  --host HOST           Get all Jeti inventory variables about a specific
                         Droplet
   --all                 List all DigitalOcean information as JSON
   --droplets, -d        List Droplets as JSON
@@ -119,20 +119,20 @@ optional arguments:
 # Inspired by the EC2 inventory plugin:
 # https://github.com/jeti/jeti/blob/devel/contrib/inventory/ec2.py
 #
-# This file is part of jeti,
+# This file is part of jeti (and was forked from Ansible)
 #
-# Ansible is free software: you can redistribute it and/or modify
+# Jeti is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# Ansible is distributed in the hope that it will be useful,
+# Jeti is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with Ansible.  If not, see <http://www.gnu.org/licenses/>.
+# along with Jeti.  If not, see <http://www.gnu.org/licenses/>.
 
 ######################################################################
 
@@ -236,7 +236,7 @@ class DigitalOceanInventory(object):
 
         # DigitalOceanInventory data
         self.data = {}  # All DigitalOcean data
-        self.inventory = {}  # Ansible Inventory
+        self.inventory = {}  # Jeti Inventory
 
         # Define defaults
         self.cache_path = '.'
@@ -352,10 +352,10 @@ class DigitalOceanInventory(object):
 
     def read_cli_args(self):
         """ Command line argument processing """
-        parser = argparse.ArgumentParser(description='Produce an Ansible Inventory file based on DigitalOcean credentials')
+        parser = argparse.ArgumentParser(description='Produce an Jeti Inventory file based on DigitalOcean credentials')
 
-        parser.add_argument('--list', action='store_true', help='List all active Droplets as Ansible inventory (default: True)')
-        parser.add_argument('--host', action='store', help='Get all Ansible inventory variables about a specific Droplet')
+        parser.add_argument('--list', action='store_true', help='List all active Droplets as Jeti inventory (default: True)')
+        parser.add_argument('--host', action='store', help='Get all Jeti inventory variables about a specific Droplet')
 
         parser.add_argument('--all', action='store_true', help='List all DigitalOcean information as JSON')
         parser.add_argument('--droplets', '-d', action='store_true', help='List Droplets as JSON')
@@ -442,7 +442,7 @@ class DigitalOceanInventory(object):
         return
 
     def build_inventory(self):
-        """ Build Ansible inventory of droplets """
+        """ Build Jeti inventory of droplets """
         self.inventory = {
             'all': {
                 'hosts': [],
@@ -534,7 +534,7 @@ class DigitalOceanInventory(object):
     ###########################################################################
     @staticmethod
     def to_safe(word):
-        """ Converts 'bad' characters in a string to underscores so they can be used as Ansible groups """
+        """ Converts 'bad' characters in a string to underscores so they can be used as Jeti groups """
         return re.sub(r"[^A-Za-z0-9\-.]", "_", word)
 
     @staticmethod

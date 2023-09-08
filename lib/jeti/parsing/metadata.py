@@ -1,19 +1,19 @@
 # (c) 2017, Toshio Kuratomi <tkuratomi@ansible.com>
 #
-# This file is part of Ansible
+# This file is part of Jeti
 #
-# Ansible is free software: you can redistribute it and/or modify
+# Jeti is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# Ansible is distributed in the hope that it will be useful,
+# Jeti is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with Ansible.  If not, see <http://www.gnu.org/licenses/>.
+# along with Jeti.  If not, see <http://www.gnu.org/licenses/>.
 
 # Make coding more python3-ish
 from __future__ import (absolute_import, division, print_function)
@@ -46,22 +46,22 @@ def _seek_end_of_dict(module_data, start_line, start_col, next_node_line, next_n
     by semicolons)
 
     Examples::
-        ANSIBLE_METADATA = {[..]}
+        JETI_METADATA = {[..]}
         DOCUMENTATION = [..]
 
-        ANSIBLE_METADATA = {[..]} # Optional comments with confusing junk => {}
+        JETI_METADATA = {[..]} # Optional comments with confusing junk => {}
         # Optional comments {}
         DOCUMENTATION = [..]
 
-        ANSIBLE_METADATA = {
+        JETI_METADATA = {
             [..]
             }
         # Optional comments {}
         DOCUMENTATION = [..]
 
-        ANSIBLE_METADATA = {[..]} ; DOCUMENTATION = [..]
+        JETI_METADATA = {[..]} ; DOCUMENTATION = [..]
 
-        ANSIBLE_METADATA = {}EOF
+        JETI_METADATA = {}EOF
     """
     if next_node_line is None:
         # The dict is the last statement in the file
@@ -119,18 +119,18 @@ def _seek_end_of_string(module_data, start_line, start_col, next_node_line, next
     character will be.
 
     Examples:
-        ANSIBLE_METADATA = '''[..]''' # Optional comment with confusing chars '''
+        JETI_METADATA = '''[..]''' # Optional comment with confusing chars '''
         # Optional comment with confusing chars '''
         DOCUMENTATION = [..]
 
-        ANSIBLE_METADATA = '''
+        JETI_METADATA = '''
             [..]
             '''
         DOCUMENTATIONS = [..]
 
-        ANSIBLE_METADATA = '''[..]''' ; DOCUMENTATION = [..]
+        JETI_METADATA = '''[..]''' ; DOCUMENTATION = [..]
 
-        SHORT_NAME = ANSIBLE_METADATA = '''[..]''' ; DOCUMENTATION = [..]
+        SHORT_NAME = JETI_METADATA = '''[..]''' ; DOCUMENTATION = [..]
 
     String marker variants:
         * '[..]'
@@ -166,7 +166,7 @@ def extract_metadata(module_ast=None, module_data=None, offsets=False):
     :returns: a tuple of metadata (a dict), line the metadata starts on,
         column the metadata starts on, line the metadata ends on, column the
         metadata ends on, and the names the metadata is assigned to.  One of
-        the names the metadata is assigned to will be ANSIBLE_METADATA.  If no
+        the names the metadata is assigned to will be JETI_METADATA.  If no
         metadata is found, the tuple will be (None, -1, -1, -1, -1, None).
         If ``offsets`` is False then the tuple will consist of
         (metadata, -1, -1, -1, -1, None).
@@ -191,7 +191,7 @@ def extract_metadata(module_ast=None, module_data=None, offsets=False):
     for root_idx, child in reversed(list(enumerate(module_ast.body))):
         if isinstance(child, ast.Assign):
             for target in child.targets:
-                if isinstance(target, ast.Name) and target.id == 'ANSIBLE_METADATA':
+                if isinstance(target, ast.Name) and target.id == 'JETI_METADATA':
                     metadata = ast.literal_eval(child.value)
                     if not offsets:
                         continue

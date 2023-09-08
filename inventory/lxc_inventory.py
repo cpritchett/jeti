@@ -5,28 +5,28 @@
 # Based in part on:
 # libvirt_lxc.py, (c) 2013, Michael Scherer <misc@zarb.org>
 #
-# This file is part of jeti,
+# This file is part of jeti (and was forked from Ansible)
 #
-# Ansible is free software: you can redistribute it and/or modify
+# Jeti is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# Ansible is distributed in the hope that it will be useful,
+# Jeti is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with Ansible.  If not, see <http://www.gnu.org/licenses/>.
+# along with Jeti.  If not, see <http://www.gnu.org/licenses/>.
 """
-Ansible inventory script for LXC containers. Requires Python
+Jeti inventory script for LXC containers. Requires Python
 bindings for LXC API.
 
 In LXC, containers can be grouped by setting the lxc.group option,
 which may be found more than once in a container's
 configuration. So, we enumerate all containers, fetch their list
-of groups, and then build the dictionary in the way Ansible expects
+of groups, and then build the dictionary in the way Jeti expects
 it.
 """
 from __future__ import print_function
@@ -56,7 +56,7 @@ def build_dict():
 
 
 def main(argv):
-    """Returns a JSON dictionary as expected by Ansible"""
+    """Returns a JSON dictionary as expected by Jeti"""
     result = build_dict()
     if len(argv) == 2 and argv[1] == '--list':
         json.dump(result, sys.stdout)

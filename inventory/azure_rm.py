@@ -3,20 +3,20 @@
 # Copyright (c) 2016 Matt Davis, <mdavis@ansible.com>
 #                    Chris Houseknecht, <house@redhat.com>
 #
-# This file is part of jeti
+# This file is part of jeti (and was forked from Ansible)
 #
-# Ansible is free software: you can redistribute it and/or modify
+# Jeti is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# Ansible is distributed in the hope that it will be useful,
+# Jet is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with Ansible.  If not, see <http://www.gnu.org/licenses/>.
+# along with Jeti.  If not, see <http://www.gnu.org/licenses/>.
 #
 
 '''
@@ -266,7 +266,7 @@ AZURE_CONFIG_SETTINGS = dict(
 )
 
 AZURE_MIN_VERSION = "2.0.0"
-ANSIBLE_USER_AGENT = 'Jeti/{0}'.format(ansible_version)
+JETI_USER_AGENT = 'Jeti/{0}'.format(ansible_version)
 
 
 def azure_id_to_dict(id):
@@ -518,7 +518,7 @@ class AzureRM(object):
                              self.subscription_id,
                              base_url=base_url,
                              api_version=api_version)
-        client.config.add_user_agent(ANSIBLE_USER_AGENT)
+        client.config.add_user_agent(JETI_USER_AGENT)
         return client
 
     @property
@@ -607,7 +607,7 @@ class AzureInventory(object):
     def _parse_cli_args(self):
         # Parse command line arguments
         parser = argparse.ArgumentParser(
-            description='Produce an Ansible Inventory file for an Azure subscription')
+            description='Produce a Jeti Inventory file for an Azure subscription')
         parser.add_argument('--list', action='store_true', default=True,
                             help='List instances (default: True)')
         parser.add_argument('--debug', action='store_true', default=False,
@@ -955,7 +955,7 @@ class AzureInventory(object):
         return False
 
     def _to_safe(self, word):
-        ''' Converts 'bad' characters in a string to underscores so they can be used as Ansible groups '''
+        ''' Converts 'bad' characters in a string to underscores so they can be used as Jeti groups '''
         regex = r"[^A-Za-z0-9\_"
         if not self.replace_dash_in_groups:
             regex += r"\-"

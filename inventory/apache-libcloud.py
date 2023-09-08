@@ -4,18 +4,18 @@
 #
 # This file is part of jeti,
 #
-# Ansible is free software: you can redistribute it and/or modify
+# Jeti is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# Ansible is distributed in the hope that it will be useful,
+# Jeti is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with Ansible.  If not, see <http://www.gnu.org/licenses/>.
+# along with Jeti.  If not, see <http://www.gnu.org/licenses/>.
 
 ######################################################################
 
@@ -23,7 +23,7 @@
 Apache Libcloud generic external inventory script
 =================================
 
-Generates inventory that Ansible can understand by making API request to
+Generates inventory that Jeti can understand by making API request to
 Cloud providers using the Apache libcloud library.
 
 This script also assumes there is a libcloud.ini file alongside it
@@ -37,7 +37,7 @@ import re
 from time import time
 
 from jeti.module_utils.six import iteritems, string_types
-from jeti.module_utils.six.moves import configparser as ConfigParser
+import configparser as ConfigParser
 from libcloud.compute.types import Provider
 from libcloud.compute.providers import get_driver
 import libcloud.security as sec
@@ -146,7 +146,7 @@ class LibcloudInventory(object):
         Command line argument processing
         '''
 
-        parser = argparse.ArgumentParser(description='Produce an Ansible Inventory file based on libcloud supported providers')
+        parser = argparse.ArgumentParser(description='Produce a Jeti Inventory file based on libcloud supported providers')
         parser.add_argument('--list', action='store_true', default=True,
                             help='List instances (default: True)')
         parser.add_argument('--host', action='store',
@@ -321,7 +321,7 @@ class LibcloudInventory(object):
     def to_safe(self, word):
         '''
         Converts 'bad' characters in a string to underscores so they can be
-        used as Ansible groups
+        used as Jeti groups
         '''
 
         return re.sub(r"[^A-Za-z0-9\-]", "_", word)

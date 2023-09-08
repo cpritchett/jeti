@@ -1,19 +1,19 @@
 # (c) 2014, Michael DeHaan <michael.dehaan@gmail.com>
 #
-# This file is part of Ansible
+# This file is part of Jeti
 #
-# Ansible is free software: you can redistribute it and/or modify
+# Jeti is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# Ansible is distributed in the hope that it will be useful,
+# Jeti is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with Ansible.  If not, see <http://www.gnu.org/licenses/>.
+# along with Jeti.  If not, see <http://www.gnu.org/licenses/>.
 
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
@@ -122,7 +122,7 @@ class Display(with_metaclass(Singleton, object)):
         self._errors = {}
 
         self.b_cowsay = None
-        self.noncow = C.ANSIBLE_COW_SELECTION
+        self.noncow = C.JETI_COW_SELECTION
 
         self.set_cowsay_info()
 
@@ -131,8 +131,8 @@ class Display(with_metaclass(Singleton, object)):
                 cmd = subprocess.Popen([self.b_cowsay, "-l"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 (out, err) = cmd.communicate()
                 self.cows_available = set([to_text(c) for c in out.split()])
-                if C.ANSIBLE_COW_WHITELIST and any(C.ANSIBLE_COW_WHITELIST):
-                    self.cows_available = set(C.ANSIBLE_COW_WHITELIST).intersection(self.cows_available)
+                if C.JETI_COW_WHITELIST and any(C.JETI_COW_WHITELIST):
+                    self.cows_available = set(C.JETI_COW_WHITELIST).intersection(self.cows_available)
             except Exception:
                 # could not execute cowsay for some reason
                 self.b_cowsay = False
@@ -140,11 +140,11 @@ class Display(with_metaclass(Singleton, object)):
         self._set_column_width()
 
     def set_cowsay_info(self):
-        if C.ANSIBLE_NOCOWS:
+        if C.JETI_NOCOWS:
             return
 
-        if C.ANSIBLE_COW_PATH:
-            self.b_cowsay = C.ANSIBLE_COW_PATH
+        if C.JETI_COW_PATH:
+            self.b_cowsay = C.JETI_COW_PATH
         else:
             for b_cow_path in b_COW_PATHS:
                 if os.path.exists(b_cow_path):

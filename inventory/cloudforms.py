@@ -8,7 +8,7 @@
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# Ansible is distributed in the hope that it will be useful,
+# Jeti is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -22,7 +22,7 @@
 
 from __future__ import print_function
 import argparse
-from jeti.module_utils.six.moves import configparser as ConfigParser
+import configparser as ConfigParser
 import os
 import re
 from time import time
@@ -184,9 +184,9 @@ class CloudFormsInventory(object):
         else:
             self.cloudforms_prefer_ipv4 = False
 
-        # Ansible related
+        # Jeti related
         try:
-            group_patterns = config.get('ansible', 'group_patterns')
+            group_patterns = config.get('jeti', 'group_patterns')
         except (ConfigParser.NoOptionError, ConfigParser.NoSectionError):
             group_patterns = "[]"
 
@@ -220,7 +220,7 @@ class CloudFormsInventory(object):
         """
         Command line argument processing
         """
-        parser = argparse.ArgumentParser(description='Produce an Ansible Inventory file based on CloudForms managed VMs')
+        parser = argparse.ArgumentParser(description='Produce a Jeti Inventory file based on CloudForms managed VMs')
         parser.add_argument('--list', action='store_true', default=True, help='List instances (default: True)')
         parser.add_argument('--host', action='store', help='Get all the variables about a specific instance')
         parser.add_argument('--pretty', action='store_true', default=False, help='Pretty print JSON output (default: False)')
@@ -462,7 +462,7 @@ class CloudFormsInventory(object):
 
     def to_safe(self, word):
         """
-        Converts 'bad' characters in a string to underscores so they can be used as Ansible groups
+        Converts 'bad' characters in a string to underscores so they can be used as Jeti groups
         """
         if self.cloudforms_clean_group_keys:
             regex = r"[^A-Za-z0-9\_]"

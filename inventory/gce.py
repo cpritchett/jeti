@@ -7,7 +7,7 @@
 GCE external inventory script
 =================================
 
-Generates inventory that Ansible can understand by making API requests
+Generates inventory that Jeti can understand by making API requests
 Google Compute Engine via the libcloud library.  Full install/configuration
 instructions for the gce* modules can be found in the comments of
 ansible/test/gce_tests.py.
@@ -71,7 +71,7 @@ except ImportError:
     # library is used.
     pass
 
-USER_AGENT_PRODUCT = "Ansible-gce_inventory_plugin"
+USER_AGENT_PRODUCT = "Jeti-gce_inventory_plugin"
 USER_AGENT_VERSION = "v2"
 
 import sys
@@ -80,7 +80,8 @@ import argparse
 
 from time import time
 
-from jeti.module_utils.six.moves import configparser
+import configparser
+
 
 import logging
 logging.getLogger('libcloud.common.google').addHandler(logging.NullHandler())
@@ -330,7 +331,7 @@ class GceInventory(object):
         ''' Command line argument processing '''
 
         parser = argparse.ArgumentParser(
-            description='Produce an Ansible Inventory file based on GCE')
+            description='Produce a Jeti Inventory file based on GCE')
         parser.add_argument('--list', action='store_true', default=True,
                             help='List instances (default: True)')
         parser.add_argument('--host', action='store',

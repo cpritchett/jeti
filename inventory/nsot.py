@@ -4,7 +4,7 @@
 nsot
 ====
 
-Ansible Dynamic Inventory to pull hosts from NSoT, a flexible CMDB by Dropbox
+Jeti Dynamic Inventory to pull hosts from NSoT, a flexible CMDB by Dropbox
 
 Features
 --------
@@ -32,7 +32,7 @@ Since it'd be annoying and failure prone to guess where you're configuration
 file is, use ``NSOT_INVENTORY_CONFIG`` to specify the path to it.
 
 This file should adhere to the YAML spec. All top-level variable must be
-desired Ansible group-name hashed with single 'query' item to define the NSoT
+desired Jeti group-name hashed with single 'query' item to define the NSoT
 attribute query.
 
 Queries follow the normal NSoT query syntax, `shown here`_

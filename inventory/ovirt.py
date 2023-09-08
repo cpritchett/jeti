@@ -3,18 +3,18 @@
 #
 # This file is part of jeti
 #
-# Ansible is free software: you can redistribute it and/or modify
+# Jeti is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# Ansible is distributed in the hope that it will be useful,
+# Jeti is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with Ansible.  If not, see <http://www.gnu.org/licenses/>.
+# along with Jeti.  If not, see <http://www.gnu.org/licenses/>.
 
 """
 ovirt external inventory script
@@ -69,7 +69,7 @@ import sys
 import os
 import argparse
 from collections import defaultdict
-from jeti.module_utils.six.moves import configparser as ConfigParser
+import configparser as ConfigParser
 
 import json
 
@@ -183,7 +183,7 @@ class OVirtInventory(object):
         :rtype : argparse.Namespace
         """
 
-        parser = argparse.ArgumentParser(description='Produce an Ansible Inventory file based on ovirt')
+        parser = argparse.ArgumentParser(description='Produce a Jeti Inventory file based on ovirt')
         parser.add_argument('--list', action='store_true', default=True, help='List instances (default: True)')
         parser.add_argument('--host', action='store', help='Get all information about an instance')
         parser.add_argument('--pretty', action='store_true', default=False, help='Pretty format (default: False)')

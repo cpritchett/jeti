@@ -7,18 +7,18 @@
 #
 # This file is part of jeti,
 #
-# Ansible is free software: you can redistribute it and/or modify
+# Jeti is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# Ansible is distributed in the hope that it will be useful,
+# Jeti is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with Ansible.  If not, see <http://www.gnu.org/licenses/>.
+# along with Jeti.  If not, see <http://www.gnu.org/licenses/>.
 
 ######################################################################
 
@@ -56,8 +56,7 @@ import argparse
 import httplib2 as http
 from time import time
 from jeti.module_utils import six
-from jeti.module_utils.six.moves import configparser
-from jeti.module_utils.six.moves.urllib.parse import urlparse
+import configparserfrom jeti.module_utils.six.moves.urllib.parse import urlparse
 
 import json
 
@@ -117,7 +116,7 @@ class RudderInventory(object):
     def parse_cli_args(self):
         ''' Command line argument processing '''
 
-        parser = argparse.ArgumentParser(description='Produce an Ansible Inventory file based on Rudder inventory')
+        parser = argparse.ArgumentParser(description='Produce a Jeti Inventory file based on Rudder inventory')
         parser.add_argument('--list', action='store_true', default=True,
                             help='List instances (default: True)')
         parser.add_argument('--host', action='store',
@@ -287,7 +286,7 @@ class RudderInventory(object):
 
     def to_safe(self, word):
         ''' Converts 'bad' characters in a string to underscores so they can be
-        used as Ansible variable names '''
+        used as Jeti variable names '''
 
         return re.sub(r'[^A-Za-z0-9\_]', '_', word)
 

@@ -1,19 +1,33 @@
+
 # (c) 2012-2014, Michael DeHaan <michael.dehaan@gmail.com>
 #
-# This file is part of Ansible
+# This file is part of Jeti
 #
-# Ansible is free software: you can redistribute it and/or modify
+# Jeti is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# Ansible is distributed in the hope that it will be useful,
+# Jeti is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with Ansible.  If not, see <http://www.gnu.org/licenses/>.
+# along with Jeti.  If not, see <http://www.gnu.org/licenses/>.
+
+# ==============================================================
+# jeti project users
+#
+# YOU SHOULD NOT USE THIS FILE, THIS IS ONLY INCLUDED FOR LEGACY
+# INVENTORY SCRIPTS THAT MIGHT REFERENCE IT. 
+#
+# print to stderr and exit with a non-zero exit code instead
+#
+# much of this code is dead code that is not used by anything
+# in the project
+# ===============================================================
+
 
 # Make coding more python3-ish
 from __future__ import (absolute_import, division, print_function)
@@ -21,7 +35,7 @@ __metaclass__ = type
 
 import re
 
-from ansible.errors.yaml_strings import (
+from jeti.errors.yaml_strings import (
     YAML_COMMON_DICT_ERROR,
     YAML_COMMON_LEADING_TAB_ERROR,
     YAML_COMMON_PARTIALLY_QUOTED_LINE_ERROR,
@@ -35,31 +49,31 @@ from jeti.module_utils._text import to_native, to_text
 from jeti.module_utils.common._collections_compat import Sequence
 
 
-class AnsibleError(Exception):
+class JetiError(Exception):
     '''
-    This is the base class for all errors raised from Ansible code,
+    This is the base class for all errors raised from Jeti code,
     and can be instantiated with two optional parameters beyond the
     error message to control whether detailed information is displayed
     when the error occurred while parsing a data file of some kind.
 
     Usage:
 
-        raise AnsibleError('some message here', obj=obj, show_content=True)
+        raise JetiError('some message here', obj=obj, show_content=True)
 
-    Where "obj" is some subclass of ansible.parsing.yaml.objects.AnsibleBaseYAMLObject,
+    Where "obj" is some subclass of jeti.parsing.yaml.objects.JetiBaseYAMLObject,
     which should be returned by the DataLoader() class.
     '''
 
     def __init__(self, message="", obj=None, show_content=True, suppress_extended_error=False, orig_exc=None):
-        super(AnsibleError, self).__init__(message)
+        super(JetiError, self).__init__(message)
 
         # we import this here to prevent an import loop problem,
-        # since the objects code also imports ansible.errors
-        from ansible.parsing.yaml.objects import AnsibleBaseYAMLObject
+        # since the objects code also imports jeti.errors
+        from jeti.parsing.yaml.objects import JetiBaseYAMLObject
 
         self._obj = obj
         self._show_content = show_content
-        if obj and isinstance(obj, AnsibleBaseYAMLObject):
+        if obj and isinstance(obj, JetiBaseYAMLObject):
             extended_error = self._get_extended_error()
             if extended_error and not suppress_extended_error:
                 self.message = '%s\n\n%s' % (to_native(message), to_native(extended_error))
@@ -124,7 +138,7 @@ class AnsibleError(Exception):
         error_message = ''
 
         try:
-            (src_file, line_number, col_number) = self._obj.ansible_pos
+            (src_file, line_number, col_number) = self._obj.jeti_pos
             error_message += YAML_POSITION_DETAILS % (src_file, line_number, col_number)
             if src_file not in ('<string>', '<unicode>') and self._show_content:
                 (target_line, prev_line) = self._get_error_lines_from_file(src_file, line_number - 1)
@@ -198,72 +212,72 @@ class AnsibleError(Exception):
         return error_message
 
 
-class AnsibleAssertionError(AnsibleError, AssertionError):
+class JetiAssertionError(JetiError, AssertionError):
     '''Invalid assertion'''
     pass
 
 
-class AnsibleOptionsError(AnsibleError):
+class JetiOptionsError(JetiError):
     ''' bad or incomplete options passed '''
     pass
 
 
-class AnsibleParserError(AnsibleError):
+class JetiParserError(JetiError):
     ''' something was detected early that is wrong about a playbook or data file '''
     pass
 
 
-class AnsibleInternalError(AnsibleError):
+class JetiInternalError(JetiError):
     ''' internal safeguards tripped, something happened in the code that should never happen '''
     pass
 
 
-class AnsibleRuntimeError(AnsibleError):
-    ''' ansible had a problem while running a playbook '''
+class JetiRuntimeError(JetiError):
+    ''' jeti had a problem while running a playbook '''
     pass
 
 
-class AnsibleModuleError(AnsibleRuntimeError):
+class JetiModuleError(JetiRuntimeError):
     ''' a module failed somehow '''
     pass
 
 
-class AnsibleConnectionFailure(AnsibleRuntimeError):
+class JetiConnectionFailure(JetiRuntimeError):
     ''' the transport / connection_plugin had a fatal error '''
     pass
 
 
-class AnsibleAuthenticationFailure(AnsibleConnectionFailure):
+class JetiAuthenticationFailure(JetiConnectionFailure):
     '''invalid username/password/key'''
     pass
 
 
-class AnsibleCallbackError(AnsibleRuntimeError):
+class JetiCallbackError(JetiRuntimeError):
     ''' a callback failure '''
     pass
 
 
-class AnsibleTemplateError(AnsibleRuntimeError):
+class JetiTemplateError(JetiRuntimeError):
     '''A template related errror'''
     pass
 
 
-class AnsibleFilterError(AnsibleTemplateError):
+class JetiFilterError(JetiTemplateError):
     ''' a templating failure '''
     pass
 
 
-class AnsibleLookupError(AnsibleTemplateError):
+class JetiLookupError(JetiTemplateError):
     ''' a lookup failure '''
     pass
 
 
-class AnsibleUndefinedVariable(AnsibleTemplateError):
+class JetiUndefinedVariable(JetiTemplateError):
     ''' a templating failure '''
     pass
 
 
-class AnsibleFileNotFound(AnsibleRuntimeError):
+class JetiFileNotFound(JetiRuntimeError):
     ''' a file missing failure '''
 
     def __init__(self, message="", obj=None, show_content=True, suppress_extended_error=False, orig_exc=None, paths=None, file_name=None):
@@ -284,21 +298,21 @@ class AnsibleFileNotFound(AnsibleRuntimeError):
                 message += "\n"
             message += "Searched in:\n\t%s" % searched
 
-        message += " on the Ansible Controller.\nIf you are using a module and expect the file to exist on the remote, see the remote_src option"
+        message += " on the Jeti Controller.\nIf you are using a module and expect the file to exist on the remote, see the remote_src option"
 
-        super(AnsibleFileNotFound, self).__init__(message=message, obj=obj, show_content=show_content,
+        super(JetiFileNotFound, self).__init__(message=message, obj=obj, show_content=show_content,
                                                   suppress_extended_error=suppress_extended_error, orig_exc=orig_exc)
 
 
 # These Exceptions are temporary, using them as flow control until we can get a better solution.
 # DO NOT USE as they will probably be removed soon.
 # We will port the action modules in our tree to use a context manager instead.
-class AnsibleAction(AnsibleRuntimeError):
+class JetiAction(JetiRuntimeError):
     ''' Base Exception for Action plugin flow control '''
 
     def __init__(self, message="", obj=None, show_content=True, suppress_extended_error=False, orig_exc=None, result=None):
 
-        super(AnsibleAction, self).__init__(message=message, obj=obj, show_content=show_content,
+        super(JetiAction, self).__init__(message=message, obj=obj, show_content=show_content,
                                             suppress_extended_error=suppress_extended_error, orig_exc=orig_exc)
         if result is None:
             self.result = {}
@@ -306,28 +320,28 @@ class AnsibleAction(AnsibleRuntimeError):
             self.result = result
 
 
-class AnsibleActionSkip(AnsibleAction):
+class JetiActionSkip(JetiAction):
     ''' an action runtime skip'''
 
     def __init__(self, message="", obj=None, show_content=True, suppress_extended_error=False, orig_exc=None, result=None):
-        super(AnsibleActionSkip, self).__init__(message=message, obj=obj, show_content=show_content,
+        super(JetiActionSkip, self).__init__(message=message, obj=obj, show_content=show_content,
                                                 suppress_extended_error=suppress_extended_error, orig_exc=orig_exc, result=result)
         self.result.update({'skipped': True, 'msg': message})
 
 
-class AnsibleActionFail(AnsibleAction):
+class JetiActionFail(JetiAction):
     ''' an action runtime failure'''
     def __init__(self, message="", obj=None, show_content=True, suppress_extended_error=False, orig_exc=None, result=None):
-        super(AnsibleActionFail, self).__init__(message=message, obj=obj, show_content=show_content,
+        super(JetiActionFail, self).__init__(message=message, obj=obj, show_content=show_content,
                                                 suppress_extended_error=suppress_extended_error, orig_exc=orig_exc, result=result)
         self.result.update({'failed': True, 'msg': message})
 
 
-class _AnsibleActionDone(AnsibleAction):
+class _JetiActionDone(JetiAction):
     ''' an action runtime early exit'''
     pass
 
 
-class AnsibleFilterTypeError(AnsibleTemplateError, TypeError):
+class JetiFilterTypeError(JetiTemplateError, TypeError):
     ''' a Jinja filter templating failure due to bad type'''
     pass

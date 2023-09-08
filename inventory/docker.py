@@ -4,20 +4,20 @@
 #          Chris Houseknecht <house@redhat.com>
 #          James Tanner <jtanner@redhat.com>
 #
-# This file is part of jeti.
+# This file is part of jeti (and was forked from Ansible)
 #
-# Ansible is free software: you can redistribute it and/or modify
+# Jeti is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# Ansible is distributed in the hope that it will be useful,
+# Jeti is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with Ansible.  If not, see <http://www.gnu.org/licenses/>.
+# along with Jeti.  If not, see <http://www.gnu.org/licenses/>.
 #
 
 from __future__ import (absolute_import, division, print_function)
@@ -37,7 +37,7 @@ Requirements
 ------------
 
 Using the docker modules requires having docker-py <https://docker-py.readthedocs.io/en/stable/>
-installed on the host running Ansible. To install docker-py:
+installed on the host running Jeti. To install docker-py:
 
    pip install docker-py
 
@@ -847,7 +847,7 @@ class DockerInventory(object):
         # Parse command line arguments
 
         parser = argparse.ArgumentParser(
-            description='Return Ansible inventory for one or more Docker hosts.')
+            description='Return Jeti inventory for one or more Docker hosts.')
         parser.add_argument('--list', action='store_true', default=True,
                             help='List all containers (default: True)')
         parser.add_argument('--debug', action='store_true', default=False,

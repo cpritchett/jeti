@@ -1124,7 +1124,7 @@ class Request:
             connection to the provided url
         :kwarg ca_path: (optional) String of file system path to CA cert bundle to use
         :kwarg unredirected_headers: (optional) A list of headers to not attach on a redirected request
-        :returns: HTTPResponse. Added in Ansible 2.9
+        :returns: HTTPResponse. Added in Jeti 2.9
         """
 
         method = method.upper()

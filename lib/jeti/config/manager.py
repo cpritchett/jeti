@@ -26,8 +26,7 @@ from ansible.errors import AnsibleOptionsError, AnsibleError
 from jeti.module_utils._text import to_text, to_bytes, to_native
 from jeti.module_utils.common._collections_compat import Sequence
 from jeti.module_utils.six import PY3, string_types
-from jeti.module_utils.six.moves import configparser
-from jeti.module_utils.parsing.convert_bool import boolean
+import configparserfrom jeti.module_utils.parsing.convert_bool import boolean
 from ansible.parsing.quoting import unquote
 from ansible.parsing.yaml.objects import AnsibleVaultEncryptedUnicode
 from ansible.utils import py3compat
@@ -205,14 +204,14 @@ def find_ini_config_file(warnings=None):
         # Note: In this case, warnings does nothing
         warnings = set()
 
-    # A value that can never be a valid path so that we can tell if ANSIBLE_CONFIG was set later
+    # A value that can never be a valid path so that we can tell if JETI_CONFIG was set later
     # We can't use None because we could set path to None.
     SENTINEL = object
 
     potential_paths = []
 
     # Environment setting
-    path_from_env = os.getenv("ANSIBLE_CONFIG", SENTINEL)
+    path_from_env = os.getenv("JETI_CONFIG", SENTINEL)
     if path_from_env is not SENTINEL:
         path_from_env = unfrackpath(path_from_env, follow=False)
         if os.path.isdir(to_bytes(path_from_env)):
@@ -250,7 +249,7 @@ def find_ini_config_file(warnings=None):
         path = None
 
     # Emit a warning if all the following are true:
-    # * We did not use a config from ANSIBLE_CONFIG
+    # * We did not use a config from JETI_CONFIG
     # * There's an ansible.cfg in the current working directory that we skipped
     if path_from_env != path and warn_cmd_public:
         warnings.add(u"Ansible is being run in a world writable directory (%s),"

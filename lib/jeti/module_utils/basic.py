@@ -226,7 +226,7 @@ _literal_eval = literal_eval
 # multiple AnsibleModules are created.  Otherwise each AnsibleModule would
 # attempt to read from stdin.  Other code should not use this directly as it
 # is an internal implementation detail
-_ANSIBLE_ARGS = None
+_JETI_ARGS = None
 
 
 def env_fallback(*args, **kwargs):
@@ -264,7 +264,7 @@ FILE_COMMON_ARGUMENTS = dict(
     regexp=dict(),  # used by assemble
     delimiter=dict(),  # used by assemble
     directory_mode=dict(),  # used by copy
-    unsafe_writes=dict(type='bool', default=False, fallback=(env_fallback, ['ANSIBLE_UNSAFE_WRITES'])),  # should be available to any module using atomic_move
+    unsafe_writes=dict(type='bool', default=False, fallback=(env_fallback, ['JETI_UNSAFE_WRITES'])),  # should be available to any module using atomic_move
 )
 
 PASSWD_ARG_RE = re.compile(r'^[-]{0,2}pass[-]?(word|wd)?')
@@ -605,9 +605,9 @@ def _load_params():
     to call this function and consume its outputs than to implement the logic
     inside it as a copy in your own code.
     '''
-    global _ANSIBLE_ARGS
-    if _ANSIBLE_ARGS is not None:
-        buffer = _ANSIBLE_ARGS
+    global _JETI_ARGS
+    if _JETI_ARGS is not None:
+        buffer = _JETI_ARGS
     else:
         # debug overrides to read args from file or cmdline
 
@@ -628,7 +628,7 @@ def _load_params():
                 buffer = sys.stdin.read()
             else:
                 buffer = sys.stdin.buffer.read()
-        _ANSIBLE_ARGS = buffer
+        _JETI_ARGS = buffer
 
     try:
         params = json.loads(buffer.decode('utf-8'))
@@ -641,11 +641,11 @@ def _load_params():
         params = json_dict_unicode_to_bytes(params)
 
     try:
-        return params['ANSIBLE_MODULE_ARGS']
+        return params['JETI_MODULE_ARGS']
     except KeyError:
         # This helper does not have access to fail_json so we have to print
         # json output on our own.
-        print('\n{"msg": "Error: Module unable to locate ANSIBLE_MODULE_ARGS in json data from stdin.  Unable to figure out what parameters were passed", '
+        print('\n{"msg": "Error: Module unable to locate JETI_MODULE_ARGS in json data from stdin.  Unable to figure out what parameters were passed", '
               '"failed": true}')
         sys.exit(1)
 

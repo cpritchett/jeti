@@ -2,20 +2,20 @@
 
 # (c) 2013, Michael Scherer <misc@zarb.org>
 #
-# This file is part of jeti,
+# This file is part of jeti, which was forked from Ansible
 #
-# Ansible is free software: you can redistribute it and/or modify
+# Jeti is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# Ansible is distributed in the hope that it will be useful,
+# Jeti is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with Ansible.  If not, see <http://www.gnu.org/licenses/>.
+# along with Jeti.  If not, see <http://www.gnu.org/licenses/>.
 
 DOCUMENTATION = '''
 ---
@@ -35,7 +35,7 @@ import sys
 import StringIO
 
 from jeti.module_utils.urls import open_url
-from jeti.module_utils.six.moves import configparser as ConfigParser
+import configparser as ConfigParser
 
 configparser = None
 
@@ -69,9 +69,9 @@ def get_json_from_api(url, username, password):
     return json.loads(response.read())['data']
 
 
-username = get_config('ANSIBLE_OPENSHIFT_USERNAME', 'default_rhlogin')
-password = get_config('ANSIBLE_OPENSHIFT_PASSWORD', 'password')
-broker_url = 'https://%s/broker/rest/' % get_config('ANSIBLE_OPENSHIFT_BROKER', 'libra_server')
+username = get_config('JETI_OPENSHIFT_USERNAME', 'default_rhlogin')
+password = get_config('JETI_OPENSHIFT_PASSWORD', 'password')
+broker_url = 'https://%s/broker/rest/' % get_config('JETI_OPENSHIFT_BROKER', 'libra_server')
 
 
 response = get_json_from_api(broker_url + '/domains', username, password)

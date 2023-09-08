@@ -1,4 +1,4 @@
-# (c) 2020, Felix Fontein <felix@fontein.de>
+# (c) 2014, Toshio Kuratomi <tkuratomi@ansible.com>
 #
 # This file is part of Jeti
 #
@@ -14,20 +14,13 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Jeti.  If not, see <http://www.gnu.org/licenses/>.
+
+# Make coding more python3-ish
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
-
-def add_internal_fqcns(names):
-    '''
-    Given a sequence of action/module names, returns a list of these names
-    with the same names with the prefixes `ansible.builtin.` and
-    `ansible.legacy.` added for all names that are not already FQCNs.
-    '''
-    result = []
-    for name in names:
-        result.append(name)
-        if '.' not in name:
-            result.append('ansible.builtin.%s' % name)
-            result.append('ansible.legacy.%s' % name)
-    return result
+'''
+Compat library for ansible.  This contains compatibility definitions for older python
+When we need to import a module differently depending on python version, do it
+here.  Then in the code we can simply import from compat in order to get what we want.
+'''

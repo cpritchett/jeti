@@ -3,20 +3,20 @@
 #
 # (c) 2015, Steve Gargan <steve.gargan@gmail.com>
 #
-# This file is part of jeti,
+# This file is part of jeti (and was forked from Ansible)
 #
-# Ansible is free software: you can redistribute it and/or modify
+# Jeti is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# Ansible is distributed in the hope that it will be useful,
+# Jeti is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with Ansible.  If not, see <http://www.gnu.org/licenses/>.
+# along with Jeti.  If not, see <http://www.gnu.org/licenses/>.
 
 ######################################################################
 
@@ -24,7 +24,7 @@
 Consul.io inventory script (http://consul.io)
 ======================================
 
-Generates Ansible inventory from nodes in a Consul cluster. This script will
+Generates Jeti inventory from nodes in a Consul cluster. This script will
 group nodes by:
  - datacenter,
  - registered service
@@ -136,8 +136,7 @@ import re
 import argparse
 import sys
 
-from jeti.module_utils.six.moves import configparser
-
+import configparser
 
 def get_log_filename():
     tty_filename = '/dev/tty'
@@ -165,7 +164,7 @@ def setup_logging():
             },
         },
         'root': {
-            'level': os.getenv('ANSIBLE_INVENTORY_CONSUL_IO_LOG_LEVEL', 'WARN'),
+            'level': os.getenv('JETI_INVENTORY_CONSUL_IO_LOG_LEVEL', 'WARN'),
             'handlers': ['console'],
         },
         'handlers': {
@@ -186,7 +185,7 @@ def setup_logging():
     logger.debug('Invoked with %r', sys.argv)
 
 
-if os.getenv('ANSIBLE_INVENTORY_CONSUL_IO_LOG_ENABLED'):
+if os.getenv('JETI_INVENTORY_CONSUL_IO_LOG_ENABLED'):
     setup_logging()
 
 
@@ -429,7 +428,7 @@ class ConsulInventory(object):
 
     def to_safe(self, word):
         ''' Converts 'bad' characters in a string to underscores so they can be used
-         as Ansible groups '''
+         as Jeti groups '''
         return re.sub(r'[^A-Za-z0-9\-\.]', '_', word)
 
     def sanitize_dict(self, d):
@@ -480,7 +479,7 @@ class ConsulConfig(dict):
 
     def read_cli_args(self):
         ''' Command line argument processing '''
-        parser = argparse.ArgumentParser(description='Produce an Ansible Inventory file based nodes in a Consul cluster')
+        parser = argparse.ArgumentParser(description='Produce a Jeti Inventory file based nodes in a Consul cluster')
 
         parser.add_argument('--list', action='store_true',
                             help='Get all inventory variables from all nodes in the consul cluster')

@@ -7,13 +7,13 @@ External inventory script for Scaleway
 
 Shamelessly copied from an existing inventory script.
 
-This script generates an inventory that Ansible can understand by making API requests to Scaleway API
+This script generates an inventory that Jeti can understand by making API requests to Scaleway API
 
 Requires some python libraries, ensure to have them installed when using this script. (pip install requests https://pypi.org/project/requests/)
 
 Before using this script you may want to modify scaleway.ini config file.
 
-This script generates an Ansible hosts file with these host groups:
+This script generates an Jeti hosts file with these host groups:
 
 <hostname>: Defines host itself with Scaleway's hostname as group name.
 <tag>: Contains all hosts which has "<tag>" as tag.
@@ -25,25 +25,24 @@ all: Contains all hosts defined in Scaleway.
 #
 # This file is part of jeti,
 #
-# Ansible is free software: you can redistribute it and/or modify
+# Jeti is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# Ansible is distributed in the hope that it will be useful,
+# Jeti is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with Ansible.  If not, see <http://www.gnu.org/licenses/>.
+# along with Jeti.  If not, see <http://www.gnu.org/licenses/>.
 
 import copy
 import os
 import requests
 from jeti.module_utils import six
-from jeti.module_utils.six.moves import configparser
-import sys
+import configparserimport sys
 import time
 import traceback
 
@@ -61,7 +60,7 @@ class ScalewayAPI:
     def __init__(self, auth_token, region):
         self.session = requests.session()
         self.session.headers.update({
-            'User-Agent': 'Ansible Python/%s' % (sys.version.split(' ')[0])
+            'User-Agent': 'Jeti Python/%s' % (sys.version.split(' ')[0])
         })
         self.session.headers.update({
             'X-Auth-Token': auth_token.encode('latin1')
