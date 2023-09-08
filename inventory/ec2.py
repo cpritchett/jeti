@@ -1,18 +1,46 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 '''
 EC2 external inventory script
 =================================
 
-Generates inventory that Ansible can understand by making API request to
+Generates inventory that Jet can understand by making API request to
 AWS EC2 using the Boto library.
 
-NOTE: This script assumes Ansible is being executed where the environment
+It is very slightly modified version of an Ansible inventory script
+(Ansible no longer uses inventory scripts)
+
+Setup
+=====
+
+Since Jet has no inherent dependency on python, but this script does,
+please ensure the following is true before using this script:
+
+You have python3 installed and available to the current user
+
+You have installed the following packages
+
+awscli (possibly not required but very likely useful anyway)
+boto
+boto3
+
+One way to do this is to run
+pip3 install awscli
+pip3 install boto
+pip3 install boto3
+
+Assumptions
+===========
+
+NOTE: This script assumes Jet is being executed where the environment
 variables needed for Boto have already been set:
     export AWS_ACCESS_KEY_ID='AK123'
     export AWS_SECRET_ACCESS_KEY='abc123'
 
 Optional region environment variable if region is 'auto'
+
+If you already have ~/.aws/credentials it appears this script will 
+use them to authenticate with AWS.
 
 This script also assumes that there is an ec2.ini file alongside it.  To specify a
 different path to ec2.ini, define the EC2_INI_PATH environment variable:
@@ -168,9 +196,14 @@ from boto import elasticache
 from boto import route53
 from boto import sts
 
-from jeti.module_utils import six
-from jeti.module_utils import ec2 as ec2_utils
-from jeti.module_utils.six.moves import configparser
+import six
+import configparser
+from configparser import ConfigParser
+# In the interests of keeping this script self-contained
+# this version does not import the ec2.py module_utils
+# This means enabling RDS Instances and RDS Clusters Instances
+# are not supported
+#from jeti.module_utils import ec2 as ec2_utils
 
 HAS_BOTO3 = False
 try:
@@ -323,10 +356,7 @@ class Ec2Inventory(object):
             }
         }
 
-        if six.PY3:
-            config = configparser.ConfigParser(DEFAULTS)
-        else:
-            config = configparser.SafeConfigParser(DEFAULTS)
+        config = configparser.ConfigParser(DEFAULTS)
         ec2_ini_path = os.environ.get('EC2_INI_PATH', defaults['ec2']['ini_path'])
         ec2_ini_path = os.path.expanduser(os.path.expandvars(ec2_ini_path))
 
@@ -551,12 +581,14 @@ class Ec2Inventory(object):
         for region in self.regions:
             self.get_instances_by_region(region)
             if self.rds_enabled:
-                self.get_rds_instances_by_region(region)
+                self.fail_with_error("Include RDS not supported, pull requests welcome.  Set 'rds' in 'ec2' section of your ec2.ini to False until this can be changed")
+                #self.get_rds_instances_by_region(region)
             if self.elasticache_enabled:
                 self.get_elasticache_clusters_by_region(region)
                 self.get_elasticache_replication_groups_by_region(region)
             if self.include_rds_clusters:
-                self.include_rds_clusters_by_region(region)
+                self.fail_with_error("Include RDS clusters not supported, pull requests welcome.  Set 'rds' in 'ec2' section of your ec2.ini to False until this can be changed")
+                #self.include_rds_clusters_by_region(region)
 
         self.write_to_cache(self.inventory, self.cache_path_cache)
         self.write_to_cache(self.index, self.cache_path_index)
