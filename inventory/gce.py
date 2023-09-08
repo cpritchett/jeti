@@ -7,7 +7,7 @@
 GCE external inventory script
 =================================
 
-Generates inventory that Ansible can understand by making API requests
+Generates inventory that Jeti can understand by making API requests
 Google Compute Engine via the libcloud library.  Full install/configuration
 instructions for the gce* modules can be found in the comments of
 ansible/test/gce_tests.py.

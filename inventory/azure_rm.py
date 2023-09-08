@@ -266,7 +266,7 @@ AZURE_CONFIG_SETTINGS = dict(
 )
 
 AZURE_MIN_VERSION = "2.0.0"
-ANSIBLE_USER_AGENT = 'Jeti/{0}'.format(ansible_version)
+JETI_USER_AGENT = 'Jeti/{0}'.format(ansible_version)
 
 
 def azure_id_to_dict(id):
@@ -518,7 +518,7 @@ class AzureRM(object):
                              self.subscription_id,
                              base_url=base_url,
                              api_version=api_version)
-        client.config.add_user_agent(ANSIBLE_USER_AGENT)
+        client.config.add_user_agent(JETI_USER_AGENT)
         return client
 
     @property

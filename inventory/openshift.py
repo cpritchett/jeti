@@ -2,7 +2,7 @@
 
 # (c) 2013, Michael Scherer <misc@zarb.org>
 #
-# This file is part of jeti,
+# This file is part of jeti, which was forked from Ansible
 #
 # Jeti is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -69,9 +69,9 @@ def get_json_from_api(url, username, password):
     return json.loads(response.read())['data']
 
 
-username = get_config('ANSIBLE_OPENSHIFT_USERNAME', 'default_rhlogin')
-password = get_config('ANSIBLE_OPENSHIFT_PASSWORD', 'password')
-broker_url = 'https://%s/broker/rest/' % get_config('ANSIBLE_OPENSHIFT_BROKER', 'libra_server')
+username = get_config('JETI_OPENSHIFT_USERNAME', 'default_rhlogin')
+password = get_config('JETI_OPENSHIFT_PASSWORD', 'password')
+broker_url = 'https://%s/broker/rest/' % get_config('JETI_OPENSHIFT_BROKER', 'libra_server')
 
 
 response = get_json_from_api(broker_url + '/domains', username, password)

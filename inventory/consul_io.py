@@ -164,7 +164,7 @@ def setup_logging():
             },
         },
         'root': {
-            'level': os.getenv('ANSIBLE_INVENTORY_CONSUL_IO_LOG_LEVEL', 'WARN'),
+            'level': os.getenv('JETI_INVENTORY_CONSUL_IO_LOG_LEVEL', 'WARN'),
             'handlers': ['console'],
         },
         'handlers': {
@@ -185,7 +185,7 @@ def setup_logging():
     logger.debug('Invoked with %r', sys.argv)
 
 
-if os.getenv('ANSIBLE_INVENTORY_CONSUL_IO_LOG_ENABLED'):
+if os.getenv('JETI_INVENTORY_CONSUL_IO_LOG_ENABLED'):
     setup_logging()
 
 

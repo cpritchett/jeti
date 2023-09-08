@@ -122,7 +122,7 @@ class Display(with_metaclass(Singleton, object)):
         self._errors = {}
 
         self.b_cowsay = None
-        self.noncow = C.ANSIBLE_COW_SELECTION
+        self.noncow = C.JETI_COW_SELECTION
 
         self.set_cowsay_info()
 
@@ -131,8 +131,8 @@ class Display(with_metaclass(Singleton, object)):
                 cmd = subprocess.Popen([self.b_cowsay, "-l"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 (out, err) = cmd.communicate()
                 self.cows_available = set([to_text(c) for c in out.split()])
-                if C.ANSIBLE_COW_WHITELIST and any(C.ANSIBLE_COW_WHITELIST):
-                    self.cows_available = set(C.ANSIBLE_COW_WHITELIST).intersection(self.cows_available)
+                if C.JETI_COW_WHITELIST and any(C.JETI_COW_WHITELIST):
+                    self.cows_available = set(C.JETI_COW_WHITELIST).intersection(self.cows_available)
             except Exception:
                 # could not execute cowsay for some reason
                 self.b_cowsay = False
@@ -140,11 +140,11 @@ class Display(with_metaclass(Singleton, object)):
         self._set_column_width()
 
     def set_cowsay_info(self):
-        if C.ANSIBLE_NOCOWS:
+        if C.JETI_NOCOWS:
             return
 
-        if C.ANSIBLE_COW_PATH:
-            self.b_cowsay = C.ANSIBLE_COW_PATH
+        if C.JETI_COW_PATH:
+            self.b_cowsay = C.JETI_COW_PATH
         else:
             for b_cow_path in b_COW_PATHS:
                 if os.path.exists(b_cow_path):

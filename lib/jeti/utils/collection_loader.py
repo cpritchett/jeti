@@ -35,7 +35,7 @@ class AnsibleCollectionLoader(with_metaclass(Singleton, object)):
         if config:
             self._n_configured_paths = config.get_config_value('COLLECTIONS_PATHS')
         else:
-            self._n_configured_paths = os.environ.get('ANSIBLE_COLLECTIONS_PATHS', '').split(os.pathsep)
+            self._n_configured_paths = os.environ.get('JETI_COLLECTIONS_PATHS', '').split(os.pathsep)
 
         if isinstance(self._n_configured_paths, string_types):
             self._n_configured_paths = [self._n_configured_paths]
