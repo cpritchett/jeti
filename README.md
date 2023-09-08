@@ -80,6 +80,10 @@ See https://www.jetporch.com/inventory/dynamic-cloud-inventory for the JSON spec
 New inventory scripts do not need to accept '--host', as this is never used as Jet does not pass arguments to the inventory script.  
 Pull requests to remove this feature from any inventory scripts will also be accepted.
 
+While jet is efficient with large datasets, any inventory plugins also return a serious number of variables that may not be deemed usuable for automation purposes, for instance,
+if every single host object comes back with the list of possible instance sizes for a region, patches to remove this content are
+GREAT candidates. Ideally only theoretically relevant data should be returned in the JSON.
+
 Testing A Script
 ================
 
