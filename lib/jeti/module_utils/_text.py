@@ -83,7 +83,7 @@ def to_bytes(obj, encoding='utf-8', errors=None, nonstring='simplerepr'):
                 surrogates are first replaced with a replacement characters
                 and then the string is encoded using ``replace`` (which replaces
                 the rest of the nonencodable bytes).  If ``surrogateescape`` is
-                not present it will simply use ``replace``.  (Added in Ansible 2.3)
+                not present it will simply use ``replace``.  (Added in Jeti 2.3)
                 This strategy is designed to never traceback when it attempts
                 to encode a string.
 
@@ -187,7 +187,7 @@ def to_text(obj, encoding='utf-8', errors=None, nonstring='simplerepr'):
                 handler, otherwise it will use replace.
             :surrogate_then_replace: Does the same as surrogate_or_replace but
                 `was added for symmetry with the error handlers in
-                :func:`ansible.module_utils._text.to_bytes` (Added in Ansible 2.3)
+                :func:`ansible.module_utils._text.to_bytes` (Added in Jeti 2.3)
 
         Because surrogateescape was added in Python3 this usually means that
         Python3 will use `surrogateescape` and Python2 will use the fallback

@@ -37,7 +37,7 @@ Requirements
 ------------
 
 Using the docker modules requires having docker-py <https://docker-py.readthedocs.io/en/stable/>
-installed on the host running Ansible. To install docker-py:
+installed on the host running Jeti. To install docker-py:
 
    pip install docker-py
 
@@ -847,7 +847,7 @@ class DockerInventory(object):
         # Parse command line arguments
 
         parser = argparse.ArgumentParser(
-            description='Return Ansible inventory for one or more Docker hosts.')
+            description='Return Jeti inventory for one or more Docker hosts.')
         parser.add_argument('--list', action='store_true', default=True,
                             help='List all containers (default: True)')
         parser.add_argument('--debug', action='store_true', default=False,

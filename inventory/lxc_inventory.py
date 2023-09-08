@@ -26,7 +26,7 @@ bindings for LXC API.
 In LXC, containers can be grouped by setting the lxc.group option,
 which may be found more than once in a container's
 configuration. So, we enumerate all containers, fetch their list
-of groups, and then build the dictionary in the way Ansible expects
+of groups, and then build the dictionary in the way Jeti expects
 it.
 """
 from __future__ import print_function
@@ -56,7 +56,7 @@ def build_dict():
 
 
 def main(argv):
-    """Returns a JSON dictionary as expected by Ansible"""
+    """Returns a JSON dictionary as expected by Jeti"""
     result = build_dict()
     if len(argv) == 2 and argv[1] == '--list':
         json.dump(result, sys.stdout)

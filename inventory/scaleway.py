@@ -7,13 +7,13 @@ External inventory script for Scaleway
 
 Shamelessly copied from an existing inventory script.
 
-This script generates an inventory that Ansible can understand by making API requests to Scaleway API
+This script generates an inventory that Jeti can understand by making API requests to Scaleway API
 
 Requires some python libraries, ensure to have them installed when using this script. (pip install requests https://pypi.org/project/requests/)
 
 Before using this script you may want to modify scaleway.ini config file.
 
-This script generates an Ansible hosts file with these host groups:
+This script generates an Jeti hosts file with these host groups:
 
 <hostname>: Defines host itself with Scaleway's hostname as group name.
 <tag>: Contains all hosts which has "<tag>" as tag.
@@ -60,7 +60,7 @@ class ScalewayAPI:
     def __init__(self, auth_token, region):
         self.session = requests.session()
         self.session.headers.update({
-            'User-Agent': 'Ansible Python/%s' % (sys.version.split(' ')[0])
+            'User-Agent': 'Jeti Python/%s' % (sys.version.split(' ')[0])
         })
         self.session.headers.update({
             'X-Auth-Token': auth_token.encode('latin1')

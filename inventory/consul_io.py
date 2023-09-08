@@ -24,7 +24,7 @@
 Consul.io inventory script (http://consul.io)
 ======================================
 
-Generates Ansible inventory from nodes in a Consul cluster. This script will
+Generates Jeti inventory from nodes in a Consul cluster. This script will
 group nodes by:
  - datacenter,
  - registered service
@@ -428,7 +428,7 @@ class ConsulInventory(object):
 
     def to_safe(self, word):
         ''' Converts 'bad' characters in a string to underscores so they can be used
-         as Ansible groups '''
+         as Jeti groups '''
         return re.sub(r'[^A-Za-z0-9\-\.]', '_', word)
 
     def sanitize_dict(self, d):
@@ -479,7 +479,7 @@ class ConsulConfig(dict):
 
     def read_cli_args(self):
         ''' Command line argument processing '''
-        parser = argparse.ArgumentParser(description='Produce an Ansible Inventory file based nodes in a Consul cluster')
+        parser = argparse.ArgumentParser(description='Produce a Jeti Inventory file based nodes in a Consul cluster')
 
         parser.add_argument('--list', action='store_true',
                             help='Get all inventory variables from all nodes in the consul cluster')

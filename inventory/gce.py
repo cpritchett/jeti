@@ -71,7 +71,7 @@ except ImportError:
     # library is used.
     pass
 
-USER_AGENT_PRODUCT = "Ansible-gce_inventory_plugin"
+USER_AGENT_PRODUCT = "Jeti-gce_inventory_plugin"
 USER_AGENT_VERSION = "v2"
 
 import sys
@@ -331,7 +331,7 @@ class GceInventory(object):
         ''' Command line argument processing '''
 
         parser = argparse.ArgumentParser(
-            description='Produce an Ansible Inventory file based on GCE')
+            description='Produce a Jeti Inventory file based on GCE')
         parser.add_argument('--list', action='store_true', default=True,
                             help='List instances (default: True)')
         parser.add_argument('--host', action='store',

@@ -57,9 +57,9 @@ _ssh_to_ansible = [('user', 'ansible_user'),
 
 parser = OptionParser(usage="%prog [options] --list | --host <machine>")
 parser.add_option('--list', default=False, dest="list", action="store_true",
-                  help="Produce a JSON consumable grouping of Vagrant servers for Ansible")
+                  help="Produce a JSON consumable grouping of Vagrant servers for Jeti")
 parser.add_option('--host', default=None, dest="host",
-                  help="Generate additional host specific details for given host for Ansible")
+                  help="Generate additional host specific details for given host for Jeti")
 (options, args) = parser.parse_args()
 
 #

@@ -454,7 +454,7 @@ class AnsibleCollectionRef:
         if plugin_type == u'library':
             plugin_type = u'modules'
 
-        if plugin_type not in AnsibleCollectionRef.VALID_REF_TYPES:
+        if plugin_type not in JetiCollectionRef.VALID_REF_TYPES:
             raise ValueError('{0} cannot be mapped to a valid collection ref type'.format(to_native(legacy_plugin_dir_name)))
 
         return plugin_type
@@ -536,7 +536,7 @@ def get_collection_name_from_path(path):
     :param n_path: native-string path to evaluate for collection containment
     :return: collection name or None
     """
-    n_collection_paths = [to_native(os.path.realpath(to_bytes(p))) for p in AnsibleCollectionLoader().n_collection_paths]
+    n_collection_paths = [to_native(os.path.realpath(to_bytes(p))) for p in JetiCollectionLoader().n_collection_paths]
 
     b_path = os.path.realpath(to_bytes(path))
     n_path = to_native(b_path)

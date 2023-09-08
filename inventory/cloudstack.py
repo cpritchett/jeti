@@ -21,10 +21,10 @@
 ######################################################################
 
 """
-Ansible CloudStack external inventory script.
+Jeti CloudStack external inventory script.
 =============================================
 
-Generates Ansible inventory from CloudStack. Configuration is read from
+Generates Jeti inventory from CloudStack. Configuration is read from
 'cloudstack.ini'. If you need to pass the project, write a simple wrapper
 script, e.g. project_cloudstack.sh:
 

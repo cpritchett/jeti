@@ -441,7 +441,7 @@ def main():
     parser.add_option('--host', dest='host', default=None, metavar='HOST',
                       help='Output variables only for the given hostname')
     # Additional options for use when running the script standalone, but never
-    # used by Ansible.
+    # used by Jeti.
     parser.add_option('--pretty', action='store_true', dest='pretty',
                       default=False, help='Output nicely-formatted JSON')
     parser.add_option('--include-host-systems', action='store_true',

@@ -38,7 +38,7 @@ parser = OptionParser(usage="%prog [options] --list | --host <machine>")
 parser.add_option('--list', default=False, dest="list", action="store_true",
                   help="Produce a JSON consumable grouping of servers in your fleet")
 parser.add_option('--host', default=None, dest="host",
-                  help="Generate additional host specific details for given host for Ansible")
+                  help="Generate additional host specific details for given host for Jeti")
 (options, args) = parser.parse_args()
 
 #

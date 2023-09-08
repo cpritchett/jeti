@@ -85,9 +85,9 @@ Produce a Jeti Inventory based on DigitalOcean credentials
 
 optional arguments:
   -h, --help            show this help message and exit
-  --list                List all active Droplets as Ansible inventory
+  --list                List all active Droplets as Jeti inventory
                         (default: True)
-  --host HOST           Get all Ansible inventory variables about a specific
+  --host HOST           Get all Jeti inventory variables about a specific
                         Droplet
   --all                 List all DigitalOcean information as JSON
   --droplets, -d        List Droplets as JSON
@@ -236,7 +236,7 @@ class DigitalOceanInventory(object):
 
         # DigitalOceanInventory data
         self.data = {}  # All DigitalOcean data
-        self.inventory = {}  # Ansible Inventory
+        self.inventory = {}  # Jeti Inventory
 
         # Define defaults
         self.cache_path = '.'
@@ -352,10 +352,10 @@ class DigitalOceanInventory(object):
 
     def read_cli_args(self):
         """ Command line argument processing """
-        parser = argparse.ArgumentParser(description='Produce an Ansible Inventory file based on DigitalOcean credentials')
+        parser = argparse.ArgumentParser(description='Produce an Jeti Inventory file based on DigitalOcean credentials')
 
-        parser.add_argument('--list', action='store_true', help='List all active Droplets as Ansible inventory (default: True)')
-        parser.add_argument('--host', action='store', help='Get all Ansible inventory variables about a specific Droplet')
+        parser.add_argument('--list', action='store_true', help='List all active Droplets as Jeti inventory (default: True)')
+        parser.add_argument('--host', action='store', help='Get all Jeti inventory variables about a specific Droplet')
 
         parser.add_argument('--all', action='store_true', help='List all DigitalOcean information as JSON')
         parser.add_argument('--droplets', '-d', action='store_true', help='List Droplets as JSON')
@@ -442,7 +442,7 @@ class DigitalOceanInventory(object):
         return
 
     def build_inventory(self):
-        """ Build Ansible inventory of droplets """
+        """ Build Jeti inventory of droplets """
         self.inventory = {
             'all': {
                 'hosts': [],
@@ -534,7 +534,7 @@ class DigitalOceanInventory(object):
     ###########################################################################
     @staticmethod
     def to_safe(word):
-        """ Converts 'bad' characters in a string to underscores so they can be used as Ansible groups """
+        """ Converts 'bad' characters in a string to underscores so they can be used as Jeti groups """
         return re.sub(r"[^A-Za-z0-9\-.]", "_", word)
 
     @staticmethod

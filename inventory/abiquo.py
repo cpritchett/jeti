@@ -7,14 +7,14 @@ External inventory script for Abiquo
 
 Shamelessly copied from an existing inventory script.
 
-This script generates an inventory that Ansible can understand by making API requests to Abiquo API
+This script generates an inventory that Jeti can understand by making API requests to Abiquo API
 Requires some python libraries, ensure to have them installed when using this script.
 
 This script has been tested in Abiquo 3.0 but it may work also for Abiquo 2.6.
 
 Before using this script you may want to modify abiquo.ini config file.
 
-This script generates an Ansible hosts file with these host groups:
+This script generates an Jeti hosts file with these host groups:
 
 ABQ_xxx: Defines a hosts itself by Abiquo VM name label
 all: Contains all hosts defined in Abiquo user's enterprise

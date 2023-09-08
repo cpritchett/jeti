@@ -23,7 +23,7 @@
 Apache Libcloud generic external inventory script
 =================================
 
-Generates inventory that Ansible can understand by making API request to
+Generates inventory that Jeti can understand by making API request to
 Cloud providers using the Apache libcloud library.
 
 This script also assumes there is a libcloud.ini file alongside it
@@ -146,7 +146,7 @@ class LibcloudInventory(object):
         Command line argument processing
         '''
 
-        parser = argparse.ArgumentParser(description='Produce an Ansible Inventory file based on libcloud supported providers')
+        parser = argparse.ArgumentParser(description='Produce a Jeti Inventory file based on libcloud supported providers')
         parser.add_argument('--list', action='store_true', default=True,
                             help='List instances (default: True)')
         parser.add_argument('--host', action='store',
@@ -321,7 +321,7 @@ class LibcloudInventory(object):
     def to_safe(self, word):
         '''
         Converts 'bad' characters in a string to underscores so they can be
-        used as Ansible groups
+        used as Jeti groups
         '''
 
         return re.sub(r"[^A-Za-z0-9\-]", "_", word)

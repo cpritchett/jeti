@@ -81,7 +81,7 @@ def parse_args():
     Create command line parser for oVirt dynamic inventory script.
     """
     parser = argparse.ArgumentParser(
-        description='Ansible dynamic inventory script for oVirt.',
+        description='Jeti dynamic inventory script for oVirt.',
     )
     parser.add_argument(
         '--list',

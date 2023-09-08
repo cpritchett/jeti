@@ -4,7 +4,7 @@
 Linode external inventory script
 =================================
 
-Generates inventory that Ansible can understand by making API request to
+Generates inventory that Jeti can understand by making API request to
 Linode using the Chube library.
 
 NOTE: This script assumes Jeti is being executed where Chube is already
@@ -170,7 +170,7 @@ class LinodeInventory(object):
 
     def parse_cli_args(self):
         """Command line argument processing"""
-        parser = argparse.ArgumentParser(description='Produce an Ansible Inventory file based on Linode')
+        parser = argparse.ArgumentParser(description='Produce a Jeti Inventory file based on Linode')
         parser.add_argument('--list', action='store_true', default=True,
                             help='List nodes (default: True)')
         parser.add_argument('--host', action='store',

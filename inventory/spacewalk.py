@@ -4,19 +4,6 @@
 Spacewalk external inventory script
 =================================
 
-Ansible has a feature where instead of reading from /etc/jeti/hosts
-as a text file, it can query external programs to obtain the list
-of hosts, groups the hosts are in, and even variables to assign to each host.
-
-To use this, copy this file over /etc/jeti/hosts and chmod +x the file.
-This, more or less, allows you to keep one central database containing
-info about all of your managed instances.
-
-This script is dependent upon the spacealk-reports package being installed
-on the same machine. It is basically a CSV-to-JSON converter from the
-output of "spacewalk-report system-groups-systems|inventory".
-
-Tested with Ansible 1.9.2 and spacewalk 2.3
 """
 #
 # Author:: Jon Miller <jonEbird@gmail.com>
@@ -104,9 +91,9 @@ def spacewalk_report(name):
 
 parser = OptionParser(usage="%prog [options] --list | --host <machine>")
 parser.add_option('--list', default=False, dest="list", action="store_true",
-                  help="Produce a JSON consumable grouping of servers for Ansible")
+                  help="Produce a JSON consumable grouping of servers for Jeti")
 parser.add_option('--host', default=None, dest="host",
-                  help="Generate additional host specific details for given host for Ansible")
+                  help="Generate additional host specific details for given host for Jeti")
 parser.add_option('-H', '--human', dest="human",
                   default=False, action="store_true",
                   help="Produce a friendlier version of either server list or host detail")

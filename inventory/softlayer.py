@@ -86,7 +86,7 @@ class SoftLayerInventory(object):
             print(self.json_format_dict(self.inventory["_meta"]["hostvars"][self.args.host], True))
 
     def to_safe(self, word):
-        '''Converts 'bad' characters in a string to underscores so they can be used as Ansible groups'''
+        '''Converts 'bad' characters in a string to underscores so they can be used as Jeti groups'''
 
         return re.sub(r"[^A-Za-z0-9\-\.]", "_", word)
 
@@ -101,7 +101,7 @@ class SoftLayerInventory(object):
     def parse_options(self):
         '''Parse all the arguments from the CLI'''
 
-        parser = argparse.ArgumentParser(description='Produce an Ansible Inventory file based on SoftLayer')
+        parser = argparse.ArgumentParser(description='Produce a Jeti Inventory file based on SoftLayer')
         parser.add_argument('--list', action='store_true', default=False,
                             help='List instances (default: False)')
         parser.add_argument('--host', action='store',

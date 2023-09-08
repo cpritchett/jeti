@@ -87,7 +87,7 @@ class ForemanInventory(object):
             print("Error parsing configuration: %s" % e, file=sys.stderr)
             return False
 
-        # Ansible related
+        # Jeti related
         try:
             group_patterns = config.get('ansible', 'group_patterns')
         except (ConfigParser.NoOptionError, ConfigParser.NoSectionError):
@@ -151,7 +151,7 @@ class ForemanInventory(object):
     def parse_cli_args(self):
         """Command line argument processing"""
 
-        parser = argparse.ArgumentParser(description='Produce an Ansible Inventory file based on foreman')
+        parser = argparse.ArgumentParser(description='Produce a Jeti Inventory file based on foreman')
         parser.add_argument('--list', action='store_true', default=True, help='List instances (default: True)')
         parser.add_argument('--host', action='store', help='Get all the variables about a specific instance')
         parser.add_argument('--refresh-cache', action='store_true', default=False,
@@ -261,7 +261,7 @@ class ForemanInventory(object):
 
     def to_safe(self, word):
         '''Converts 'bad' characters in a string to underscores
-        so they can be used as Ansible groups
+        so they can be used as Jeti groups
 
         >>> ForemanInventory.to_safe("foo-bar baz")
         'foo_barbaz'
@@ -317,7 +317,7 @@ class ForemanInventory(object):
 
             params = self._resolve_params(host_params)
 
-            # Ansible groups by parameters in host groups and Foreman host
+            # Jeti groups by parameters in host groups and Foreman host
             # attributes.
             groupby = dict()
             for k, v in params.items():
@@ -335,7 +335,7 @@ class ForemanInventory(object):
                 hostcollections = host_data.get('host_collections')
 
                 if hostcollections:
-                    # Create Ansible groups for host collections
+                    # Create Jeti groups for host collections
                     for hostcollection in hostcollections:
                         safe_key = self.to_safe('%shostcollection_%s' % (self.group_prefix, hostcollection['name'].lower()))
                         self.inventory[safe_key].append(dns_name)

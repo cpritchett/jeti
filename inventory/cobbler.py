@@ -6,7 +6,7 @@ Cobbler external inventory script
 
 This script is an example of sourcing inventory data from Cobbler
 (https://cobbler.github.io).  With cobbler each --mgmt-class in cobbler
-will correspond to a group in Ansible, and --ks-meta variables will be
+will correspond to a group in Jeti, and --ks-meta variables will be
 passed down for use in templates or even in argument lines.
 
 NOTE: The cobbler system names will not be used.  Make sure a
@@ -61,7 +61,7 @@ import json
 from jeti.module_utils.six import iteritems
 import configparser as ConfigParser
 
-# NOTE -- this file assumes Ansible is being accessed FROM the cobbler
+# NOTE -- this file assumes Jeti is being accessed FROM the cobbler
 # server, so it does not attempt to login with a username and password.
 # this will be addressed in a future version of this script.
 
@@ -171,7 +171,7 @@ class CobblerInventory(object):
 
         self.cache_max_age = int(os.getenv('COBBLER_cache_max_age', "30"))
 
-        # ignore_settings is used to ignore the settings file, for use in Ansible
+        # ignore_settings is used to ignore the settings file, for use in Jeti
         # Tower (or AWX inventory scripts and not throw python exceptions.)
         if(os.getenv('COBBLER_ignore_settings', False) == "True"):
             self.ignore_settings = True
@@ -179,7 +179,7 @@ class CobblerInventory(object):
     def parse_cli_args(self):
         """ Command line argument processing """
 
-        parser = argparse.ArgumentParser(description='Produce an Ansible Inventory file based on Cobbler')
+        parser = argparse.ArgumentParser(description='Produce a Jeti Inventory file based on Cobbler')
         parser.add_argument('--list', action='store_true', default=True, help='List instances (default: True)')
         parser.add_argument('--host', action='store', help='Get all the variables about a specific instance')
         parser.add_argument('--refresh-cache', action='store_true', default=False,
@@ -289,7 +289,7 @@ class CobblerInventory(object):
         cache.close()
 
     def to_safe(self, word):
-        """ Converts 'bad' characters in a string to underscores so they can be used as Ansible groups """
+        """ Converts 'bad' characters in a string to underscores so they can be used as Jeti groups """
 
         return re.sub(r"[^A-Za-z0-9\-]", "_", word)
 

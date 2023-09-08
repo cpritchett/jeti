@@ -323,7 +323,7 @@ class VMWareInventory(object):
     def parse_cli_args(self):
         ''' Command line argument processing '''
 
-        parser = argparse.ArgumentParser(description='Produce an Ansible Inventory file based on PyVmomi')
+        parser = argparse.ArgumentParser(description='Produce a Jeti Inventory file based on PyVmomi')
         parser.add_argument('--debug', action='store_true', default=False,
                             help='show debug info')
         parser.add_argument('--list', action='store_true', default=True,

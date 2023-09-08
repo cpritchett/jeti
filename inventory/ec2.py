@@ -7,7 +7,7 @@ EC2 external inventory script
 Generates inventory that Jeti can understand by making API request to
 AWS EC2 using the Boto library.
 
-NOTE: This script assumes Ansible is being executed where the environment
+NOTE: This script assumes Jeti is being executed where the environment
 variables needed for Boto have already been set:
     export AWS_ACCESS_KEY_ID='AK123'
     export AWS_SECRET_ACCESS_KEY='abc123'
@@ -530,7 +530,7 @@ class Ec2Inventory(object):
     def parse_cli_args(self):
         ''' Command line argument processing '''
 
-        parser = argparse.ArgumentParser(description='Produce an Ansible Inventory file based on EC2')
+        parser = argparse.ArgumentParser(description='Produce a Jeti Inventory file based on EC2')
         parser.add_argument('--list', action='store_true', default=True,
                             help='List instances (default: True)')
         parser.add_argument('--host', action='store',
@@ -1690,7 +1690,7 @@ class Ec2Inventory(object):
         return re.sub('([a-z0-9])([A-Z])', r'\1_\2', temp).lower()
 
     def to_safe(self, word):
-        ''' Converts 'bad' characters in a string to underscores so they can be used as Ansible groups '''
+        ''' Converts 'bad' characters in a string to underscores so they can be used as Jeti groups '''
         regex = r"[^A-Za-z0-9\_"
         if not self.replace_dash_in_groups:
             regex += r"\-"

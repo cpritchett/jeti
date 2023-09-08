@@ -85,7 +85,7 @@ def parse_args():
     This function expects no arguments.
     '''
 
-    parser = argparse.ArgumentParser(description='Ansible FreeIPA/IPA '
+    parser = argparse.ArgumentParser(description='Jeti FreeIPA/IPA '
                                      'inventory module')
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument('--list', action='store_true',

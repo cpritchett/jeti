@@ -116,7 +116,7 @@ class RudderInventory(object):
     def parse_cli_args(self):
         ''' Command line argument processing '''
 
-        parser = argparse.ArgumentParser(description='Produce an Ansible Inventory file based on Rudder inventory')
+        parser = argparse.ArgumentParser(description='Produce a Jeti Inventory file based on Rudder inventory')
         parser.add_argument('--list', action='store_true', default=True,
                             help='List instances (default: True)')
         parser.add_argument('--host', action='store',
@@ -286,7 +286,7 @@ class RudderInventory(object):
 
     def to_safe(self, word):
         ''' Converts 'bad' characters in a string to underscores so they can be
-        used as Ansible variable names '''
+        used as Jeti variable names '''
 
         return re.sub(r'[^A-Za-z0-9\_]', '_', word)
 

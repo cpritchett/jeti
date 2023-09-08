@@ -607,7 +607,7 @@ class AzureInventory(object):
     def _parse_cli_args(self):
         # Parse command line arguments
         parser = argparse.ArgumentParser(
-            description='Produce an Ansible Inventory file for an Azure subscription')
+            description='Produce a Jeti Inventory file for an Azure subscription')
         parser.add_argument('--list', action='store_true', default=True,
                             help='List instances (default: True)')
         parser.add_argument('--debug', action='store_true', default=False,
@@ -955,7 +955,7 @@ class AzureInventory(object):
         return False
 
     def _to_safe(self, word):
-        ''' Converts 'bad' characters in a string to underscores so they can be used as Ansible groups '''
+        ''' Converts 'bad' characters in a string to underscores so they can be used as Jeti groups '''
         regex = r"[^A-Za-z0-9\_"
         if not self.replace_dash_in_groups:
             regex += r"\-"
