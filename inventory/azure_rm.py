@@ -202,13 +202,10 @@ import sys
 import inspect
 
 from os.path import expanduser
-#from jeti.module_utils.six.moves import configparser as cp
 import configparser
 from configparser import ConfigParser
-#from six.moves.urllib.parse as urlparse
 import urllib
 from urllib import parse as urlparse
-#import jeti.module_utils.six.moves.urllib.parse as urlparse
 
 HAS_AZURE = True
 HAS_AZURE_EXC = None
