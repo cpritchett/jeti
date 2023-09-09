@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # Copyright (c) 2016 Matt Davis, <mdavis@ansible.com>
 #                    Chris Houseknecht, <house@redhat.com>
@@ -202,8 +202,10 @@ import sys
 import inspect
 
 from os.path import expanduser
-from jeti.module_utils.six.moves import configparser as cp
-import jeti.module_utils.six.moves.urllib.parse as urlparse
+import configparser
+from configparser import ConfigParser
+import urllib
+from urllib import parse as urlparse
 
 HAS_AZURE = True
 HAS_AZURE_EXC = None
@@ -382,7 +384,7 @@ class AzureRM(object):
         path = expanduser("~")
         path += "/.azure/credentials"
         try:
-            config = cp.ConfigParser()
+            config = configparser.ConfigParser()
             config.read(path)
         except Exception as exc:
             self.fail("Failed to access {0}. Check that the file exists and you have read "
@@ -913,7 +915,7 @@ class AzureInventory(object):
         config = None
         settings = None
         try:
-            config = cp.ConfigParser()
+            config = configparser.ConfigParser()
             config.read(path)
         except Exception:
             pass
