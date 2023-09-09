@@ -43,6 +43,7 @@ Tested
 
 We maintain a list of validated plugins tested so far:
 
+* Azure
 * AWS/EC2
 * Digital Ocean
 * Docker
