@@ -32,9 +32,10 @@ import json
 import os
 import os.path
 import sys
-import StringIO
+from io import StringIO
+import requests
+from requests.auth import HTTPBasicAuth
 
-from jeti.module_utils.urls import open_url
 import configparser as ConfigParser
 
 configparser = None
@@ -65,8 +66,9 @@ def get_config(env_var, config_var):
 
 def get_json_from_api(url, username, password):
     headers = {'Accept': 'application/json; version=1.5'}
-    response = open_url(url, headers=headers, url_username=username, url_password=password)
-    return json.loads(response.read())['data']
+    auth = HTTPBasicAuth(username, password)
+    response = requests.get(url, headers=headers, auth=auth)
+    return response.json['data']
 
 
 username = get_config('JETI_OPENSHIFT_USERNAME', 'default_rhlogin')
