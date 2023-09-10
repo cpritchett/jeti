@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
 # Copyright (c) 2016 Red Hat, Inc.
@@ -115,7 +115,7 @@ def create_connection():
     config_path = os.environ.get('OVIRT_INI_PATH', default_path)
 
     # Create parser and add ovirt section if it doesn't exist:
-    config = configparser.SafeConfigParser(
+    config = configparser.ConfigParser(
         defaults={
             'ovirt_url': os.environ.get('OVIRT_URL'),
             'ovirt_username': os.environ.get('OVIRT_USERNAME'),

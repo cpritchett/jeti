@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """
 Cobbler external inventory script
@@ -20,6 +20,9 @@ that those correspond to addresses.
 Tested with Cobbler 2.0.11.
 
 Changelog:
+    - 2023-09-10 jhawkesworth: mechanical conversion to python3 to allow removal of module utils.
+         Untested, but script is now self-contained..
+
     - 2015-06-21 dmccue: Modified to support run-once _meta retrieval, results in
          higher performance at ansible startup.  Groups are determined by owner rather than
          default mgmt_classes.  DNS name determined from hostname. cobbler values are written
@@ -54,11 +57,13 @@ import argparse
 import os
 import re
 from time import time
-import xmlrpclib
-
+#from xmlrpc.server import SimpleXMLRpcServer as Server
+#import xmlrpc.server
+import xmlrpc.client as xc
 import json
 
-from jeti.module_utils.six import iteritems
+import six
+from six import iteritems
 import configparser as ConfigParser
 
 # NOTE -- this file assumes Jeti is being accessed FROM the cobbler
@@ -108,7 +113,7 @@ class CobblerInventory(object):
 
     def _connect(self):
         if not self.conn:
-            self.conn = xmlrpclib.Server(self.cobbler_host, allow_none=True)
+            self.conn = xc.Server(self.cobbler_host, allow_none=True)
             self.token = None
             if self.cobbler_username is not None:
                 self.token = self.conn.login(self.cobbler_username, self.cobbler_password)
@@ -131,7 +136,7 @@ class CobblerInventory(object):
         if(self.ignore_settings):
             return
 
-        config = ConfigParser.SafeConfigParser()
+        config = ConfigParser.ConfigParser()
         config.read(os.path.dirname(os.path.realpath(__file__)) + '/cobbler.ini')
 
         self.cobbler_host = config.get('cobbler', 'host')
@@ -207,7 +212,7 @@ class CobblerInventory(object):
                 for (iname, ivalue) in iteritems(interfaces):
                     if ivalue['management'] or not ivalue['static']:
                         this_dns_name = ivalue.get('dns_name', None)
-                        if this_dns_name is not None and this_dns_name is not "":
+                        if this_dns_name != None and this_dns_name != "":
                             dns_name = this_dns_name
 
             if dns_name == '' or dns_name is None:

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # Copyright (c) 2017 Ansible Project
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 
@@ -8,7 +8,8 @@ import json
 import os
 import sys
 from ipalib import api, errors, __version__ as IPA_VERSION
-from jeti.module_utils.six import u
+import six
+from six import u
 
 
 def initialize():

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # vim: set fileencoding=utf-8 :
 #
 # Copyright (C) 2016 Guido Günther <agx@sigxcpu.org>,
@@ -74,7 +74,7 @@ class ForemanInventory(object):
     def read_settings(self):
         """Reads the settings from the foreman.ini file"""
 
-        config = ConfigParser.SafeConfigParser()
+        config = ConfigParser.ConfigParser()
         config.read(self.config_paths)
 
         # Foreman API related

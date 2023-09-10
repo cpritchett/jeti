@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # (c) 2013, Sebastien Goasguen <runseb@gmail.com>
 #
@@ -26,7 +26,16 @@ Apache Libcloud generic external inventory script
 Generates inventory that Jeti can understand by making API request to
 Cloud providers using the Apache libcloud library.
 
-This script also assumes there is a libcloud.ini file alongside it
+Setup
+=====
+
+Install libcloud as follows:
+
+pip3 install apache-libcloud
+
+This script also assumes there is a 'libcloud.ini' file alongside it.
+(Note the name, you might be expecting apache-libcloud.ini)
+Configure the libcloud.ini according to your needs.
 
 '''
 
@@ -35,8 +44,8 @@ import os
 import argparse
 import re
 from time import time
-
-from jeti.module_utils.six import iteritems, string_types
+import six
+from six import iteritems, string_types
 import configparser as ConfigParser
 from libcloud.compute.types import Provider
 from libcloud.compute.providers import get_driver
@@ -94,7 +103,7 @@ class LibcloudInventory(object):
     def read_settings(self):
         ''' Reads the settings from the libcloud.ini file '''
 
-        config = ConfigParser.SafeConfigParser()
+        config = ConfigParser.ConfigParser()
         libcloud_default_ini_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'libcloud.ini')
         libcloud_ini_path = os.environ.get('LIBCLOUD_INI_PATH', libcloud_default_ini_path)
         config.read(libcloud_ini_path)

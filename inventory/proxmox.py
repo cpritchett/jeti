@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # Copyright (C) 2014  Mathieu GAUTHIER-LAFAYE <gauthierl@lapth.cnrs.fr>
 #
@@ -24,14 +24,19 @@
 # used to specify group membership:
 #
 # { "groups": ["utility", "databases"], "a": false, "b": true }
+#
+# Updated 2023 by Jon Hawkesworth (jhawkesworth)
+#
+# Run under python3 only
 
 import json
 import os
 import sys
 from optparse import OptionParser
 
-from jeti.module_utils.six import iteritems
-from jeti.module_utils.six.moves.urllib.parse import urlencode
+import six
+from six import iteritems
+from six.moves.urllib.parse import urlencode
 
 from jeti.module_utils.urls import open_url
 

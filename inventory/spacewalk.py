@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """
 Spacewalk external inventory script
@@ -35,8 +35,8 @@ import time
 from optparse import OptionParser
 import subprocess
 import json
-
-from jeti.module_utils.six import iteritems
+# six is here for iteritems
+import six
 import configparser as ConfigParser
 
 

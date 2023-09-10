@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # (c) 2013, Michael Scherer <misc@zarb.org>
 # (c) 2014, Hiroaki Nakamura <hnakamur@gmail.com>
@@ -37,7 +37,7 @@ hosts = {}
 result = {}
 
 # Read the settings from the lxd.ini file
-config = configparser.SafeConfigParser()
+config = configparser.ConfigParser()
 config.read(os.path.dirname(os.path.realpath(__file__)) + '/lxd.ini')
 if config.has_option('lxd', 'resource'):
     resource = config.get('lxd', 'resource')

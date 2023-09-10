@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """
 fleetctl base external inventory script. Automatically finds the IPs of the booted coreos instances and
 returns it under the host group 'coreos'

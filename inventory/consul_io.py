@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 #
 # (c) 2015, Steve Gargan <steve.gargan@gmail.com>
@@ -197,7 +197,8 @@ except ImportError as e:
     sys.exit("""failed=True msg='python-consul required for this module.
 See https://python-consul.readthedocs.io/en/latest/#installation'""")
 
-from jeti.module_utils.six import iteritems
+import six
+from six import iteritems
 
 
 class ConsulInventory(object):
@@ -461,7 +462,7 @@ class ConsulConfig(dict):
 
     def read_settings(self):
         ''' Reads the settings from the consul_io.ini file (or consul.ini for backwards compatibility)'''
-        config = configparser.SafeConfigParser()
+        config = configparser.ConfigParser()
         if os.path.isfile(os.path.dirname(os.path.realpath(__file__)) + '/consul_io.ini'):
             config.read(os.path.dirname(os.path.realpath(__file__)) + '/consul_io.ini')
         else:
@@ -517,7 +518,7 @@ class ConsulConfig(dict):
         scheme = 'http'
 
         if hasattr(self, 'url'):
-            from jeti.module_utils.six.moves.urllib.parse import urlparse
+            from six.moves.urllib.parse import urlparse
             o = urlparse(self.url)
             if o.hostname:
                 host = o.hostname

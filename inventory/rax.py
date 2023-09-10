@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # (c) 2013, Jesse Keating <jesse.keating@rackspace.com,
 #           Paul Durivage <paul.durivage@rackspace.com>,
@@ -152,7 +152,8 @@ import argparse
 import warnings
 import collections
 
-from jeti.module_utils.six import iteritems
+import six
+from six import iteritems
 import configparser as ConfigParser
 
 import json
@@ -167,7 +168,7 @@ from time import time
 
 from jeti.constants import get_config
 from jeti.module_utils.parsing.convert_bool import boolean
-from jeti.module_utils.six import text_type
+from six import text_type
 
 NON_CALLABLES = (text_type, str, bool, dict, int, list, type(None))
 

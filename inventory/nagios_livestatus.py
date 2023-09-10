@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # (c) 2015, Yannig Perre <yannig.perre@gmail.com>
 #
@@ -36,18 +36,19 @@ import re
 import argparse
 import sys
 
-import configparserimport json
+import configparser
+import json
 
 try:
     from mk_livestatus import Socket
 except ImportError:
-    sys.exit("Error: mk_livestatus is needed. Try something like: pip install python-mk-livestatus")
+    sys.exit("Error: mk_livestatus is needed. Try something like: pip3 install python-mk-livestatus")
 
 
 class NagiosLivestatusInventory(object):
 
     def parse_ini_file(self):
-        config = configparser.SafeConfigParser()
+        config = configparser.ConfigParser()
         config.read(os.path.dirname(os.path.realpath(__file__)) + '/nagios_livestatus.ini')
         for section in config.sections():
             if not config.has_option(section, 'livestatus_uri'):

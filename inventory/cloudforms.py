@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # vim: set fileencoding=utf-8 :
 #
 # Copyright (C) 2016 Guido Günther <agx@sigxcpu.org>
@@ -101,7 +101,7 @@ class CloudFormsInventory(object):
         """
         Reads the settings from the cloudforms.ini file
         """
-        config = ConfigParser.SafeConfigParser()
+        config = ConfigParser.ConfigParser()
         config_paths = [
             os.path.dirname(os.path.realpath(__file__)) + '/cloudforms.ini',
             "/etc/jeti/cloudforms.ini",

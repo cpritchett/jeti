@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 '''
@@ -41,8 +41,8 @@ all: Contains all hosts defined in Scaleway.
 import copy
 import os
 import requests
-from jeti.module_utils import six
-import configparserimport sys
+import configparser
+import sys
 import time
 import traceback
 
@@ -84,8 +84,6 @@ class ScalewayAPI:
         else:
             raise ValueError(
                 "Resource %s not found in Scaleway API response" % (resource))
-
-
 def env_or_param(env_key, param=None, fallback=None):
     env_value = os.environ.get(env_key)
 
@@ -210,10 +208,7 @@ if __name__ == '__main__':
     inventory = {}
 
     # Read config
-    if six.PY3:
-        config = configparser.ConfigParser()
-    else:
-        config = configparser.SafeConfigParser()
+    config = configparser.ConfigParser()
     for configfilename in [os.path.abspath(sys.argv[0]).rsplit('.py')[0] + '.ini', 'scaleway.ini']:
         if os.path.exists(configfilename):
             config.read(configfilename)

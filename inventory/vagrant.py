@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """
 Vagrant external inventory script. Automatically finds the IP of the booted vagrant vm(s), and
 returns it under the host group 'vagrant'
@@ -42,8 +42,9 @@ from optparse import OptionParser
 from collections import defaultdict
 import json
 
-from jeti.module_utils._text import to_text
-from jeti.module_utils.six.moves import StringIO
+import six
+#from jeti.module_utils._text import to_text
+from six.moves import StringIO
 
 
 _group = 'vagrant'  # a default group
@@ -75,7 +76,8 @@ def get_ssh_config():
 # list all the running boxes
 def list_running_boxes():
 
-    output = to_text(subprocess.check_output(["vagrant", "status"]), errors='surrogate_or_strict').split('\n')
+    #output = to_text(subprocess.check_output(["vagrant", "status"]), errors='surrogate_or_strict').split('\n')
+    output = subprocess.check_output(["vagrant", "status"]).split('\n')
 
     boxes = []
 
