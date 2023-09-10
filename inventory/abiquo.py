@@ -48,8 +48,8 @@ import time
 import json
 
 import configparser as ConfigParser
-from jeti.module_utils.urls import open_url
-
+import requests
+from requests.auth import HTTPBasicAuth
 
 def api_get(link, config):
     try:
@@ -59,9 +59,9 @@ def api_get(link, config):
         else:
             url = link['href'] + '?limit=0'
             headers = {"Accept": link['type']}
-        result = open_url(url, headers=headers, url_username=config.get('auth', 'apiuser').replace('\n', ''),
-                          url_password=config.get('auth', 'apipass').replace('\n', ''))
-        return json.loads(result.read())
+        auth = HTTPBasicAuth(config.get('auth', 'apiuser').replace('\n', ''), config.get('auth', 'apipass').replace('\n', ''))
+        result = requests.get(url, headers=headers, auth=auth)
+        return result.json
     except Exception:
         return None
 

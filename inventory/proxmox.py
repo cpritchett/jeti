@@ -38,8 +38,7 @@ import six
 from six import iteritems
 from six.moves.urllib.parse import urlencode
 
-from jeti.module_utils.urls import open_url
-
+import requests
 
 class ProxmoxNodeList(list):
     def get_names(self):
@@ -106,7 +105,8 @@ class ProxmoxAPI(object):
             'password': self.options.password,
         })
 
-        data = json.load(open_url(request_path, data=request_params))
+        response = requests.get(request_path, params=request_params)
+        data = response.json
 
         self.credentials = {
             'ticket': data['data']['ticket'],
@@ -117,9 +117,9 @@ class ProxmoxAPI(object):
         request_path = '{0}{1}'.format(self.options.url, url)
 
         headers = {'Cookie': 'PVEAuthCookie={0}'.format(self.credentials['ticket'])}
-        request = open_url(request_path, data=data, headers=headers)
+        request = requests.get(request_path, data=data, headers=headers)
 
-        response = json.load(request)
+        response = request.json
         return response['data']
 
     def nodes(self):
