@@ -115,7 +115,7 @@ of their contributions here. [Ansible](https://www.ansible.com) is maintained by
 is a trademark of [Red Hat, Inc](https://www.redhat.com>)
 
 Contributions to this repo from September 2023 and beyond are made by
-contributors of the Jeti project.
+contributors of Jeti, a subproject of [Jetporch](https://www.jetporch.com)
 
 License
 =======
