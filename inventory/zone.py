@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # (c) 2015, Dagobert Michelsen <dam@baltic-online.de>
 #

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 '''
 nsot
@@ -148,7 +148,8 @@ from pynsot.client import get_api_client
 from pynsot.app import HttpServerError
 from click.exceptions import UsageError
 
-from jeti.module_utils.six import string_types
+import six
+from six import string_types
 
 
 def warning(*objs):

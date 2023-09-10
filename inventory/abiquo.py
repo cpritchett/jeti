@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 '''
@@ -210,7 +210,7 @@ if __name__ == '__main__':
     enterprise = {}
 
     # Read config
-    config = ConfigParser.SafeConfigParser()
+    config = ConfigParser.ConfigParser()
     for configfilename in [os.path.abspath(sys.argv[0]).rstrip('.py') + '.ini', 'abiquo.ini']:
         if os.path.exists(configfilename):
             config.read(configfilename)

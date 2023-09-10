@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # (c) 2014, Jonathan Lestrelin <jonathan.lestrelin@gmail.com>
 #
@@ -29,7 +29,8 @@ Configuration is read from `nagios_ndo.ini`.
 import os
 import argparse
 import sys
-import configparserimport json
+import configparser
+import json
 
 try:
     from sqlalchemy import text
@@ -41,7 +42,7 @@ except ImportError:
 class NagiosNDOInventory(object):
 
     def read_settings(self):
-        config = configparser.SafeConfigParser()
+        config = configparser.ConfigParser()
         config.read(os.path.dirname(os.path.realpath(__file__)) + '/nagios_ndo.ini')
         if config.has_option('ndo', 'database_uri'):
             self.ndo_database_uri = config.get('ndo', 'database_uri')

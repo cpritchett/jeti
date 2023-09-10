@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # Copyright 2015 IIX Inc.
 #
 # This file is part of jeti
@@ -123,7 +123,7 @@ class OVirtInventory(object):
         # This provides empty defaults to each key, so that environment
         # variable configuration (as opposed to INI configuration) is able
         # to work.
-        config = ConfigParser.SafeConfigParser(defaults={
+        config = ConfigParser.ConfigParser(defaults={
             'ovirt_url': '',
             'ovirt_username': '',
             'ovirt_password': '',

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # (c) 2013, Michael Scherer <misc@zarb.org>
 #
@@ -46,7 +46,7 @@ def get_from_rhc_config(variable):
     if os.path.exists(CONF_FILE):
         if not configparser:
             ini_str = '[root]\n' + open(CONF_FILE, 'r').read()
-            configparser = ConfigParser.SafeConfigParser()
+            configparser = ConfigParser.ConfigParser()
             configparser.readfp(StringIO.StringIO(ini_str))
         try:
             return configparser.get('root', variable)

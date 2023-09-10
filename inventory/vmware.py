@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 '''
 VMware Inventory Script
@@ -38,8 +38,9 @@ import ssl
 import sys
 import time
 
-from jeti.module_utils.common._collections_compat import MutableMapping
-from jeti.module_utils.six import integer_types, text_type, string_types
+from collections.abc import MutableMapping
+import six
+from six import integer_types, text_type, string_types
 import configparser
 # Disable logging message trigged by pSphere/suds.
 try:
@@ -63,7 +64,7 @@ from suds.sudsobject import Object as SudsObject
 class VMwareInventory(object):
 
     def __init__(self, guests_only=None):
-        self.config = configparser.SafeConfigParser()
+        self.config = configparser.ConfigParser()
         if os.environ.get('VMWARE_INI', ''):
             config_files = [os.environ['VMWARE_INI']]
         else:

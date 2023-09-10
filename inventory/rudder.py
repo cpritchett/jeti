@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # Copyright (c) 2015, Normation SAS
 #
@@ -55,8 +55,9 @@ import re
 import argparse
 import httplib2 as http
 from time import time
-from jeti.module_utils import six
-import configparserfrom jeti.module_utils.six.moves.urllib.parse import urlparse
+import six
+import configparser
+from six.moves.urllib.parse import urlparse
 
 import json
 

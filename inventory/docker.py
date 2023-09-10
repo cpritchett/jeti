@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # (c) 2016 Paul Durivage <paul.durivage@gmail.com>
 #          Chris Houseknecht <house@redhat.com>

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
 # Copyright (C): 2017, Ansible Project
@@ -40,7 +40,7 @@ from time import time
 
 from jinja2 import Environment
 
-from jeti.module_utils.six import integer_types, PY3
+from six import integer_types
 import configparser
 try:
     import argparse
@@ -234,10 +234,7 @@ class VMWareInventory(object):
             'groupby_custom_field': False}
         }
 
-        if PY3:
-            config = configparser.ConfigParser()
-        else:
-            config = configparser.SafeConfigParser()
+        config = configparser.ConfigParser()
 
         # where is the config?
         vmware_ini_path = os.environ.get('VMWARE_INI_PATH', defaults['vmware']['ini_path'])

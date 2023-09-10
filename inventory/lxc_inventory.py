@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # (c) 2015-16 Florian Haas, hastexo Professional Services GmbH
 # <florian@hastexo.com>

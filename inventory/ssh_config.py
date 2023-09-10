@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # (c) 2014, Tomas Karasek <tomas.karasek@digile.fi>
 #
@@ -48,7 +48,7 @@ import json
 
 import paramiko
 
-from jeti.module_utils.common._collections_compat import MutableSequence
+from collections.abc import MutableSequence
 
 SSH_CONF = '~/.ssh/config'
 
