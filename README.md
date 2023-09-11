@@ -48,6 +48,7 @@ We maintain a list of validated plugins tested so far:
 * Digital Ocean
 * Docker
 * GCE
+* OpenStack
 
 If you validate that a plugin is working (or has some limitations), let us know with a pull request or even just a GitHub ticket.  Plugins that get no users
 or tickets after a full year may be deleted.
