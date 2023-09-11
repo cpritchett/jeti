@@ -50,6 +50,9 @@ We maintain a list of validated plugins tested so far:
 * GCE
 * OpenStack
 
+Nearly all plugins should return JSON, they may have just not been tested
+yet with full cloud configurations. Help validating these is welcome.
+
 If you validate that a plugin is working (or has some limitations), let us know with a pull request or even just a GitHub ticket.  Plugins that get no users
 or tickets after a full year may be deleted.
 
