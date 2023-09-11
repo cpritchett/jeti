@@ -20,6 +20,8 @@
 
 # The OpenStack Inventory module uses os-client-config for configuration.
 # https://github.com/openstack/os-client-config
+# It also depends on the python-openstackclient library.
+# https://docs.openstack.org/python-openstackclient/latest/
 # This means it will either:
 #  - Respect normal OS_* environment variables like other OpenStack tools
 #  - Read values from a clouds.yaml file.
@@ -56,7 +58,8 @@ import collections
 import os
 import sys
 import time
-from distutils.version import StrictVersion
+
+from packaging.version import Version
 from io import StringIO
 
 import json
@@ -67,23 +70,24 @@ from openstack.config import loader as cloud_config
 
 CONFIG_FILES = ['/etc/jeti/openstack.yaml', '/etc/jeti/openstack.yml']
 
-
 def get_groups_from_server(server_vars, namegroup=True):
     groups = []
 
-    region = server_vars['region']
-    cloud = server_vars['cloud']
+    region = server_vars['location']['region_name'] or ''
+    cloud = server_vars['location']['cloud'] or ''
     metadata = server_vars.get('metadata', {})
 
     # Create a group for the cloud
-    groups.append(cloud)
+    if cloud:
+        groups.append(cloud)
 
     # Create a group on region
     if region:
         groups.append(region)
 
     # And one by cloud_region
-    groups.append("%s_%s" % (cloud, region))
+    if cloud and region:
+        groups.append("%s_%s" % (cloud, region))
 
     # Check if group metadata key in servers' metadata
     if 'group' in metadata:
@@ -147,7 +151,7 @@ def get_host_groups_from_cloud(inventory):
     if hasattr(inventory, 'extra_config'):
         use_hostnames = inventory.extra_config['use_hostnames']
         list_args['expand'] = inventory.extra_config['expand_hostvars']
-        if StrictVersion(sdk.version.__version__) >= StrictVersion("0.13.0"):
+        if Version(sdk.version.__version__) >= Version("0.13.0"):
             list_args['fail_on_cloud_config'] = \
                 inventory.extra_config['fail_on_errors']
     else:
