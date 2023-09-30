@@ -29,7 +29,7 @@
 #  - Current directory
 #  - ~/.config/openstack/clouds.yaml
 #  - /etc/openstack/clouds.yaml
-#  - /etc/jeti/openstack.yml
+#  - /etc/jeti/clouds.yaml
 # The clouds.yaml file can contain entries for multiple clouds and multiple
 # regions of those clouds. If it does, this inventory module will by default
 # connect to all of them and present them as one contiguous inventory.  You
@@ -38,27 +38,21 @@
 # selected, then per-cloud cache folders will be used.
 #
 # See the adjacent openstack.yml file for an example config file
-# There are two ansible inventory specific options that can be set in
+# There are two jeti inventory specific options that can be set in
 # the inventory section.
 # expand_hostvars controls whether or not the inventory will make extra API
 #                 calls to fill out additional information about each server
-# use_hostnames changes the behavior from registering every host with its UUID
-#               and making a group of its hostname to only doing this if the
-#               hostname in question has more than one server
 # fail_on_errors causes the inventory to fail and return no hosts if one cloud
 #                has failed (for example, bad credentials or being offline).
 #                When set to False, the inventory will return hosts from
 #                whichever other clouds it can contact. (Default: True)
 #
-# Also it is possible to pass the correct user by setting an ansible_user: $myuser
-# metadata attribute.
 
 import argparse
 import collections
 import os
 import sys
 import time
-
 from packaging.version import Version
 from io import StringIO
 
@@ -70,20 +64,31 @@ from openstack.config import loader as cloud_config
 
 CONFIG_FILES = ['/etc/jeti/openstack.yaml', '/etc/jeti/openstack.yml']
 
-def get_groups_from_server(server_vars, namegroup=True):
+
+def get_groups_from_server(server_vars):
+
     groups = []
 
-    region = server_vars['location']['region_name'] or ''
-    cloud = server_vars['location']['cloud'] or ''
-    metadata = server_vars.get('metadata', {})
-
-    # Create a group for the cloud
+    # set cloud from server vars, if it exists
+    # it can exist in 2 possible locations, depending on the version of openstacksdk
+    # it can either be under 'cloud' or under 'location/cloud'
+    cloud = server_vars.get('cloud', None)
+    if cloud is None:
+        cloud = server_vars.get('location', {}).get('cloud', None)
     if cloud:
         groups.append(cloud)
 
-    # Create a group on region
+    # set region from server vars, if it exists
+    # it can exist in 2 possible locations, depending on the version of openstacksdk
+    # it can either be under 'region' or under 'location/region_name'
+    region = server_vars.get('region', None)
+    if region is None:
+        region = server_vars.get('location', {}).get('region_name', None)
     if region:
         groups.append(region)
+
+    # set group from server vars, if it exists
+    metadata = server_vars.get('metadata', {})
 
     # And one by cloud_region
     if cloud and region:
@@ -97,16 +102,16 @@ def get_groups_from_server(server_vars, namegroup=True):
         if extra_group:
             groups.append(extra_group.strip())
 
-    groups.append('instance-%s' % server_vars['id'])
-    if namegroup:
+    # groups.append('instance-%s' % server_vars['id'])
+    if 'name' in server_vars and server_vars['name'] != '':
         groups.append(server_vars['name'])
 
     for key in ('flavor', 'image'):
         if 'name' in server_vars[key]:
             groups.append('%s-%s' % (key, server_vars[key]['name']))
 
-    for key, value in iter(metadata.items()):
-        groups.append('meta-%s_%s' % (key, value))
+    # for key, value in iter(metadata.items()):
+    #     groups.append('meta-%s_%s' % (key, value))
 
     az = server_vars.get('az', None)
     if az:
@@ -114,10 +119,12 @@ def get_groups_from_server(server_vars, namegroup=True):
         groups.append(az)
         groups.append('%s_%s' % (region, az))
         groups.append('%s_%s_%s' % (cloud, region, az))
+
     return groups
 
 
 def get_host_groups(inventory, refresh=False, cloud=None):
+
     (cache_file, cache_expiration_time) = get_cache_settings(cloud)
     if is_cache_stale(cache_file, cache_expiration_time, refresh=refresh):
         groups = to_json(get_host_groups_from_cloud(inventory))
@@ -129,55 +136,43 @@ def get_host_groups(inventory, refresh=False, cloud=None):
     return groups
 
 
-def append_hostvars(hostvars, groups, key, server, namegroup=False):
-    hostvars[key] = dict(
-        ansible_ssh_host=server['interface_ip'],
-        ansible_host=server['interface_ip'],
-        openstack=server)
+def append_hostvars(hostvars, groups, key, server):
 
-    metadata = server.get('metadata', {})
-    if 'ansible_user' in metadata:
-        hostvars[key]['ansible_user'] = metadata['ansible_user']
+    hostvars[key] = server
 
-    for group in get_groups_from_server(server, namegroup=namegroup):
-        groups[group].append(key)
+    # make sure all hosts are added to a 'hosts' sub-group
+    for group in get_groups_from_server(server):
+        if group not in groups:
+            groups[group] = dict(hosts=[])
+        groups[group]['hosts'].append(key)
 
 
 def get_host_groups_from_cloud(inventory):
-    groups = collections.defaultdict(list)
+
     firstpass = collections.defaultdict(list)
+    groups = collections.defaultdict(list)
     hostvars = {}
     list_args = {}
+
+    # set expand_hostvars and fail_on_errors from inventory.extra_config, if available
     if hasattr(inventory, 'extra_config'):
-        use_hostnames = inventory.extra_config['use_hostnames']
         list_args['expand'] = inventory.extra_config['expand_hostvars']
         if Version(sdk.version.__version__) >= Version("0.13.0"):
             list_args['fail_on_cloud_config'] = \
                 inventory.extra_config['fail_on_errors']
-    else:
-        use_hostnames = False
 
+    # add hosts to firstpass grouped together by hostname
     for server in inventory.list_hosts(**list_args):
-
         if 'interface_ip' not in server:
             continue
         firstpass[server['name']].append(server)
+
     for name, servers in firstpass.items():
-        if len(servers) == 1 and use_hostnames:
-            append_hostvars(hostvars, groups, name, servers[0])
-        else:
-            server_ids = set()
-            # Trap for duplicate results
-            for server in servers:
-                server_ids.add(server['id'])
-            if len(server_ids) == 1 and use_hostnames:
-                append_hostvars(hostvars, groups, name, servers[0])
-            else:
-                for server in servers:
-                    append_hostvars(
-                        hostvars, groups, server['id'], server,
-                        namegroup=True)
-    groups['_meta'] = {'hostvars': hostvars}
+        for server in servers:
+            append_hostvars(hostvars, groups, name, server)
+
+    groups['all'] = {'hostvars': hostvars}
+
     return groups
 
 
@@ -208,7 +203,7 @@ def get_cache_settings(cloud=None):
         cache_path = '{0}_{1}'.format(cache_path, cloud)
     if not os.path.exists(cache_path):
         os.makedirs(cache_path)
-    cache_file = os.path.join(cache_path, 'ansible-inventory.cache')
+    cache_file = os.path.join(cache_path, 'jeti-inventory.cache')
     return (cache_file, cache_expiration_time)
 
 
@@ -218,41 +213,47 @@ def to_json(in_dict):
 
 def parse_args():
     parser = argparse.ArgumentParser(description='OpenStack Inventory Module')
-    parser.add_argument('--cloud', default=os.environ.get('OS_CLOUD'),
+    parser.add_argument('--cloud',
+                        default=os.environ.get('OS_CLOUD'),
                         help='Cloud name (default: None')
     parser.add_argument('--private',
+                        default=os.environ.get('OS_PRIVATE', False),
                         action='store_true',
-                        help='Use private address for ansible host')
-    parser.add_argument('--refresh', action='store_true',
+                        help='Use private address for jeti host')
+    parser.add_argument('--refresh',
+                        default=os.environ.get('OS_REFRESH', False),
+                        action='store_true',
                         help='Refresh cached information')
-    parser.add_argument('--debug', action='store_true', default=False,
+    parser.add_argument('--debug',
+                        default=os.environ.get('OS_DEBUG', False),
+                        action='store_true',
                         help='Enable debug output')
-    group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument('--list', action='store_true',
-                       help='List active servers')
-    group.add_argument('--host', help='List details about the specific host')
 
     return parser.parse_args()
 
 
 def main():
+
     args = parse_args()
+
     try:
         # openstacksdk library may write to stdout, so redirect this
         sys.stdout = StringIO()
         config_files = cloud_config.CONFIG_FILES + CONFIG_FILES
         sdk.enable_logging(debug=args.debug)
+
         inventory_args = dict(
             refresh=args.refresh,
             config_files=config_files,
             private=args.private,
             cloud=args.cloud,
         )
+
         if hasattr(sdk_inventory.OpenStackInventory, 'extra_config'):
             inventory_args.update(dict(
-                config_key='ansible',
+                config_key='jeti',
                 config_defaults={
-                    'use_hostnames': False,
+                    'use_hostnames': True,
                     'expand_hostvars': True,
                     'fail_on_errors': True,
                 }
@@ -261,14 +262,14 @@ def main():
         inventory = sdk_inventory.OpenStackInventory(**inventory_args)
 
         sys.stdout = sys.__stdout__
-        if args.list:
-            output = get_host_groups(inventory, refresh=args.refresh, cloud=args.cloud)
-        elif args.host:
-            output = to_json(inventory.get_host(args.host))
+        # always return list of items; individual hosts are not supported
+        output = get_host_groups(inventory, refresh=args.refresh, cloud=args.cloud)
         print(output)
+
     except sdk.exceptions.OpenStackCloudException as e:
         sys.stderr.write('%s\n' % e.message)
         sys.exit(1)
+
     sys.exit(0)
 
 
